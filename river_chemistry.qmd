@@ -1,0 +1,42 @@
+# River water chemistry
+
+River water chemistry data were collected in May, June, August in 2017, 2018, 2019, 2020, 2021
+
+## Solute Concentrations
+
+### Carbon
+```{r}
+
+```
+
+::: {.callout-tip}
+Shortcut for the pipe (%>%): shift-command-m
+:::
+
+### Nutrients
+```{r}
+
+```
+
+### Contaminants (Hg)
+```{r}
+
+```
+
+
+## Temperature and Precipitaion-driven 'events'
+
+
+## Solute Fluxes
+
+Discharge data in lacking from these catchments. 
+```{r}
+
+```
+
+
+
+::: {.callout-note caption="Data Sources"}
+Water chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project 'TerrACE'and Framcenter project "FreshFate"; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes. 
+:::
+

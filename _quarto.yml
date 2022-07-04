@@ -1,0 +1,35 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "AB322 Catchment Fluxes Tutorial"
+  author: "Isabell Eischeid & Maeve McGovern"
+  date: "July, 2022"
+  cover-image: cover.png
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - part: catchment_to_river.qmd
+      chapters:
+        - catchment_characteristics.qmd
+    - part: river_to_sea.qmd
+      chapters:
+        - river_chemistry.qmd
+        - climate_change_impacts.qmd
+  appendices:
+    - references.qmd
+    - additional_work.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    cover-image: cover.png
+    code-link: true
+
+
+
+
+

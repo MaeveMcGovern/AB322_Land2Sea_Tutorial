@@ -1,0 +1,7 @@
+# River to Sea
+
+Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters (McGovern et al., 2020). However, these impacts are shaped by the characteristics of the inflowing freshwater, with concentrations of suspended sediments, nutrients, and contaminants varying among river catchments
+
+```{r}
+
+```

@@ -1,0 +1,9 @@
+# Catchment to River
+
+```{r}
+
+```
+
+::: {.callout-note caption="Catchment"}
+Here, we define a catchment (catchment basin, watershed, nedbørfelt) as the area from which rainfall flows into a river, lake, or reservoir.
+:::

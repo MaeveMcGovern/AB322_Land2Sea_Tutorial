@@ -1,0 +1,19 @@
+# Climate Change Impacts
+
+Now, we will combine data on catchment characteristics and river water chemistry to investigate climate change impacts for Isfjorden in a space-for-time approach
+
+Climate variables:
+
+1. Glacier coverage
+
+2. NDVI (greening)
+
+```{r}
+
+```
+
+::: {.callout-note caption="Seasonality!"}
+
+In Arctic regions, most river runoff is constrained to the summer melt season due to seasonal variations in sunlight and temperature. Despite their importance, for simplification, we do not account for seasonal variability in river discharge and water chemistry in this example.
+
+:::
