@@ -1,17 +1,5 @@
 # Introduction 
 
-## Fluxes from Land to Sea
-
-Climate change impacts on cross-ecosystem transport of solutes from Arctic catchments to coastal waters. 
-1. Increased river discharge
-      + Increases in precipitation
-      + Melting glaciers and thawing permafrost
-2. Increased vegetation biomass ('Arctic greening')
-      + Driven by increased temperatures 
-
-In this tutorial, we will discuss two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea. 
-
-
 ## Study Catchments
 
 The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard. 

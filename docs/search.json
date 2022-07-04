@@ -39,7 +39,7 @@
     "href": "intro.html",
     "title": "2  Introduction",
     "section": "",
-    "text": "Climate change impacts on cross-ecosystem transport of solutes from Arctic catchments to coastal waters. 1. Increased river discharge + Increases in precipitation + Melting glaciers and thawing permafrost 2. Increased vegetation biomass (‘Arctic greening’) + Driven by increased temperatures\nIn this tutorial, we will discuss two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea."
+    "text": "The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard.\n\n# Map"
   },
   {
     "objectID": "intro.html#study-catchments",
@@ -88,7 +88,7 @@
     "href": "river_chemistry.html#solute-fluxes",
     "title": "4  River water chemistry",
     "section": "4.3 Solute Fluxes",
-    "text": "4.3 Solute Fluxes\nDischarge data in lacking from these catchments.\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWater chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project ’TerrACE’and Framcenter project “FreshFate”; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes."
+    "text": "4.3 Solute Fluxes\nDischarge data in lacking from these catchments."
   },
   {
     "objectID": "climate_change_impacts.html",
@@ -96,5 +96,40 @@
     "title": "5  Climate Change Impacts",
     "section": "",
     "text": "Climate variables:\n\nGlacier coverage\nNDVI (greening)\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn Arctic regions, most river runoff is constrained to the summer melt season due to seasonal variations in sunlight and temperature. Despite their importance, for simplification, we do not account for seasonal variability in river discharge and water chemistry in this example."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AB322 Catchment Fluxes Tutorial",
+    "section": "",
+    "text": "UNIS course AB-322 is titled “Fluxes of Nutrients, Energy and Contaminants from Sea to Land”, a title that largely ignores the arguably larger fluxes moving in the opposite direction: from land to sea.\nHere, we have compiled an R tutorial focused on 5 Arctic rivers and their role in transporting nutrients, carbon and contaminants from thawing catchments to coastal waters in Isfjorden, Svalbard.\n\n\nThis tutorial requires you to have R and Rstudio installed on your computer. Go to the R website and follow the links for downloading.\nR for Windows: https://cran.r-project.org/bin/windows/base/. R for Macs: https://cran.r-project.org/bin/macosx/. R-studio: https://www.rstudio.com/products/rstudio/download/\nOnce you have Rstudio installed, click on File/New File/Rscript. We will use this new Rscript file for loading, cleaning and plotting catchment and river water chemistry data throughout this tutorial.\n\n\n\nIn addition, you will need to install several R packages. You can do this by copying and runing the following lines of code in your new Rscript.\n\n#install.packages(\"tidyverse\") \n#install.packages(\"vegan\")\n\n\n\n\n\n\n\nThis book was created using Quarto."
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "AB322 Catchment Fluxes Tutorial",
+    "section": "License",
+    "text": "License\nThis website is (and will always be) free to use, and is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 4.0 License."
+  },
+  {
+    "objectID": "preface.html",
+    "href": "preface.html",
+    "title": "1  Preface",
+    "section": "",
+    "text": "Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters (McGovern et al., 2020). However, these impacts are shaped by the characteristics of the inflowing freshwater, with concentrations of suspended sediments, carbon, nutrients, and contaminants varying among river catchments with differing morphology, geology, vegetation cover, and glacial coverage (refs). In the Arctic, river catchments are spatially heterogeneous, seasonally variable, and facing rapid changes with climate warming.\nClimate change impacts on cross-ecosystem transport of solutes from Arctic catchments to coastal waters is driven both by changes in discharge, and in water chemistry. Discharge is increasing for many Arctic rivers due to increases in precipitation, glacial melt and permafrost thaw. In addition, thawing catchments and increased vegetative biomass ‘Arctic Greening’, are leading to changes in river water chemistry, with implications for receiving coastal waters.\nIn this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea."
+  },
+  {
+    "objectID": "preface.html#ackowledgements",
+    "href": "preface.html#ackowledgements",
+    "title": "1  Preface",
+    "section": "1.1 Ackowledgements",
+    "text": "1.1 Ackowledgements\nWater chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project ’TerrACE’and Framcenter project “FreshFate”; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes."
+  },
+  {
+    "objectID": "catchment_characteristics.html",
+    "href": "catchment_characteristics.html",
+    "title": "3  Catchment Characteristics",
+    "section": "",
+    "text": "Note\n\n\n\nHere, we define a catchment (catchment basin, watershed, nedbørfelt) as the area from which rainfall flows into a river, lake, or reservoir."
   }
 ]
