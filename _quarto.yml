@@ -9,6 +9,7 @@ book:
   cover-image: cover.png
   chapters:
     - index.qmd
+    - preface.qmd
     - intro.qmd
     - part: catchment_to_river.qmd
       chapters:
