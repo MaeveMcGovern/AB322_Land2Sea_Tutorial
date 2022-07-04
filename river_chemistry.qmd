@@ -36,7 +36,4 @@ Discharge data in lacking from these catchments.
 
 
 
-::: {.callout-note caption="Data Sources"}
-Water chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project 'TerrACE'and Framcenter project "FreshFate"; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes. 
-:::
 
