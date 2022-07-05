@@ -14,8 +14,8 @@ book:
     - catchment_characteristics.qmd
     - river_chemistry.qmd
     - climate_change_impacts.qmd
-  appendices:
     - references.qmd
+  appendices:
     - additional_work.qmd
 
 bibliography: references.bib

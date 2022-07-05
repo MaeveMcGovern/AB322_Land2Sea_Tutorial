@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AB322 Catchment Fluxes Tutorial - 4&nbsp; River water chemistry</title>
+<title>AB322 Catchment Fluxes Tutorial - 3&nbsp; River water chemistry</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -46,7 +46,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">River water chemistry</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">River water chemistry</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -76,27 +76,32 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></a>
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./catchment_characteristics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Catchment Characteristics</span></a>
+  <a href="./catchment_characteristics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Catchment Characteristics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./river_chemistry.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">River water chemistry</span></a>
+  <a href="./river_chemistry.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">River water chemistry</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./climate_change_impacts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Climate Change Impacts</span></a>
+  <a href="./climate_change_impacts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Climate Change Impacts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -107,11 +112,6 @@ ul.task-list{list-style: none;}
       </a>
     </div>
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
-  </div>
-</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./additional_work.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Additional Work</span></a>
@@ -128,14 +128,13 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#solute-concentrations" id="toc-solute-concentrations" class="nav-link active" data-scroll-target="#solute-concentrations"> <span class="header-section-number">4.1</span> Solute Concentrations</a>
+  <li><a href="#solute-concentrations" id="toc-solute-concentrations" class="nav-link active" data-scroll-target="#solute-concentrations"> <span class="header-section-number">3.1</span> Solute Concentrations</a>
   <ul class="collapse">
-  <li><a href="#carbon" id="toc-carbon" class="nav-link" data-scroll-target="#carbon"> <span class="header-section-number">4.1.1</span> Carbon</a></li>
-  <li><a href="#nutrients" id="toc-nutrients" class="nav-link" data-scroll-target="#nutrients"> <span class="header-section-number">4.1.2</span> Nutrients</a></li>
-  <li><a href="#contaminants-hg" id="toc-contaminants-hg" class="nav-link" data-scroll-target="#contaminants-hg"> <span class="header-section-number">4.1.3</span> Contaminants (Hg)</a></li>
+  <li><a href="#carbon" id="toc-carbon" class="nav-link" data-scroll-target="#carbon"> <span class="header-section-number">3.1.1</span> Carbon</a></li>
+  <li><a href="#nutrients" id="toc-nutrients" class="nav-link" data-scroll-target="#nutrients"> <span class="header-section-number">3.1.2</span> Nutrients</a></li>
+  <li><a href="#contaminants" id="toc-contaminants" class="nav-link" data-scroll-target="#contaminants"> <span class="header-section-number">3.1.3</span> Contaminants</a></li>
   </ul></li>
-  <li><a href="#temperature-and-precipitaion-driven-events" id="toc-temperature-and-precipitaion-driven-events" class="nav-link" data-scroll-target="#temperature-and-precipitaion-driven-events"> <span class="header-section-number">4.2</span> Temperature and Precipitaion-driven ‘events’</a></li>
-  <li><a href="#solute-fluxes" id="toc-solute-fluxes" class="nav-link" data-scroll-target="#solute-fluxes"> <span class="header-section-number">4.3</span> Solute Fluxes</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"> <span class="header-section-number">4</span> PCA</a></li>
   </ul>
 </nav>
     </div>
@@ -144,7 +143,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">River water chemistry</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">River water chemistry</span></h1>
 </div>
 
 
@@ -159,12 +158,17 @@ ul.task-list{list-style: none;}
 </header>
 
 <p>River water chemistry data were collected in May, June, August in 2017, 2018, 2019, 2020, 2021</p>
-<section id="solute-concentrations" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="solute-concentrations"><span class="header-section-number">4.1</span> Solute Concentrations</h2>
-<section id="carbon" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="carbon"><span class="header-section-number">4.1.1</span> Carbon</h3>
+<section id="solute-concentrations" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="solute-concentrations"><span class="header-section-number">3.1</span> Solute Concentrations</h2>
 <div class="cell">
 
+</div>
+<section id="carbon" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="carbon"><span class="header-section-number">3.1.1</span> Carbon</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="river_chemistry_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -180,27 +184,54 @@ Tip
 </div>
 </div>
 </section>
-<section id="nutrients" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="nutrients"><span class="header-section-number">4.1.2</span> Nutrients</h3>
+<section id="nutrients" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="nutrients"><span class="header-section-number">3.1.2</span> Nutrients</h3>
 <div class="cell">
-
+<div class="cell-output-display">
+<p><img src="river_chemistry_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
-<section id="contaminants-hg" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="contaminants-hg"><span class="header-section-number">4.1.3</span> Contaminants (Hg)</h3>
+<section id="contaminants" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="contaminants"><span class="header-section-number">3.1.3</span> Contaminants</h3>
 <div class="cell">
-
+<div class="cell-output-display">
+<p><img src="river_chemistry_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 </section>
-<section id="temperature-and-precipitaion-driven-events" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="temperature-and-precipitaion-driven-events"><span class="header-section-number">4.2</span> Temperature and Precipitaion-driven ‘events’</h2>
-</section>
-<section id="solute-fluxes" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="solute-fluxes"><span class="header-section-number">4.3</span> Solute Fluxes</h2>
-<p>Discharge data in lacking from these catchments.</p>
+<section id="pca" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> PCA</h1>
 <div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: rda(X = Envar)
 
+              Inertia Rank
+Total               8     
+Unconstrained       8    8
+Inertia is variance 
+
+Eigenvalues for unconstrained axes:
+  PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8 
+3.378 2.348 1.129 0.563 0.369 0.110 0.074 0.029 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="river_chemistry_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body" data-caption="Fluxes">
+<p>Fluxes, rather than concentration data are more relevant for evaluating implications on coastal ecosystems and the Arctic ocean. Fluxes are calculated using concentrations and discharge.</p>
+</div>
 </div>
 
 
@@ -289,12 +320,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./catchment_characteristics.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Catchment Characteristics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Catchment Characteristics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./climate_change_impacts.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Climate Change Impacts</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Climate Change Impacts</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

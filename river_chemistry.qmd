@@ -1,12 +1,41 @@
 # River water chemistry
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
 River water chemistry data were collected in May, June, August in 2017, 2018, 2019, 2020, 2021
 
 ## Solute Concentrations
 
+```{r}
+#| warning: false
+library(tidyverse)
+# Load datafiles
+Water_Chem <- read_csv("Datafiles/AB322_Water_Chemistry.csv")
+```
+
+
 ### Carbon
 ```{r}
+#| warning: false
+# TOC, DOC, POC
 
+Water_Chem$Month <- factor(Water_Chem$Month,levels = c("May", "June", "August"))
+
+P1 <- Water_Chem %>% 
+  select(River, Month, DOC, TOC, POC) %>% 
+  pivot_longer(cols= -c(River, Month), names_to = "Carbon", values_to= 'Concentration') %>% 
+  ggplot(aes(x = River, y = Concentration, color = Month)) + 
+  geom_boxplot() +
+  scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
+  facet_grid(~Carbon) +
+  ylab("Organic Carbon (umol/L)") + 
+  xlab("River") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+
+P1
 ```
 
 ::: {.callout-tip}
@@ -15,24 +44,86 @@ Shortcut for the pipe (%>%): shift-command-m
 
 ### Nutrients
 ```{r}
+# NO3_NO2, SiO2, PO4
 
+P2 <- Water_Chem %>% 
+  select(River, Month, NO2_NO3, SiO2, PO4) %>% 
+  pivot_longer(cols= -c(River, Month), names_to = "Nutrient", values_to= 'Concentration') %>% 
+  ggplot(aes(x = River, y = Concentration, color = Month)) + 
+  geom_boxplot() +
+  scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
+  facet_wrap(~ Nutrient) +
+  ylab("Concentration (umol/L)") + 
+  xlab("River") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+
+P2
 ```
 
-### Contaminants (Hg)
+### Contaminants 
 ```{r}
+# Hg (Particulate and dissolved)
 
+P3 <- Water_Chem %>% 
+  select(River, Month, TotHg_Dissolved, TotHg_Particulate) %>% 
+  pivot_longer(cols= -c(River, Month), names_to = "Mercury", values_to= 'Concentration') %>% 
+  ggplot(aes(x = River, y = Concentration, color = Month)) + 
+  geom_boxplot() +
+  scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
+  facet_wrap(~ Mercury) +
+  ylab("Concentration (ug/L)") + 
+  xlab("River") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+
+P3
 ```
 
-
-## Temperature and Precipitaion-driven 'events'
-
-
-## Solute Fluxes
-
-Discharge data in lacking from these catchments. 
+# PCA
 ```{r}
+# PCA of water chemistry 
+library(vegan)
 
+Water_Chem <- Water_Chem %>% drop_na()
+
+Envar <- Water_Chem %>% 
+  select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)) %>% 
+  mutate_at(vars(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)),~scale(.))
+
+# PCA in Vegan
+Water_Chem_PCA <- rda(Envar)
+Water_Chem_PCA
+
+# Plot
+PCAscores <- scores(Water_Chem_PCA, display = "sites") %>% as.data.frame() 
+PCAvect <- scores(Water_Chem_PCA, display = "species") %>% as.data.frame() %>% rownames_to_column("species")
+
+
+library(ggrepel)
+#Plot
+P4 <- ggplot() +
+  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = Water_Chem$Month), 
+             size= 3, alpha = 0.7) +
+  scale_color_manual(values=c("#8B9DAF","tan","lightsalmon4")) + 
+  theme_classic() +
+  geom_vline(xintercept = c(0), color = "grey70", linetype = 2) + 
+  geom_hline(yintercept = c(0), color = "grey70", linetype = 2)  +
+  labs(x = "PC1 ( %)", y = "PC2 ( %)") +  
+  geom_segment(data = PCAvect, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
+               arrow = arrow(length = unit(0.1, "cm")), col = "black") +
+  geom_text_repel(data = PCAvect, aes(x = PC1, y= PC2, label = species), parse = T, col="black", size = 3, segment.size = 0.15) +
+  theme(text = element_text(size=),legend.text = element_text(size=rel(0.6)),legend.title = element_blank(), 
+        panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
+P4
 ```
+
+
+::: {.callout-note caption="Fluxes"}
+Fluxes, rather than concentration data are more relevant for evaluating implications on coastal ecosystems and the Arctic ocean. Fluxes are calculated using concentrations and discharge. 
+:::
+
+ 
 
 
 

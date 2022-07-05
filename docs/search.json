@@ -1,103 +1,5 @@
 [
   {
-    "objectID": "index.html#catchment-characteristics",
-    "href": "index.html#catchment-characteristics",
-    "title": "AB322 Catchment Fluxes Tutorial",
-    "section": "3.1 Catchment characteristics",
-    "text": "3.1 Catchment characteristics"
-  },
-  {
-    "objectID": "index.html#river-water-chemistry",
-    "href": "index.html#river-water-chemistry",
-    "title": "AB322 Catchment Fluxes Tutorial",
-    "section": "4.1 River water chemistry",
-    "text": "4.1 River water chemistry"
-  },
-  {
-    "objectID": "index.html#fluxes",
-    "href": "index.html#fluxes",
-    "title": "AB322 Catchment Fluxes Tutorial",
-    "section": "4.2 Fluxes",
-    "text": "4.2 Fluxes"
-  },
-  {
-    "objectID": "index.html#glacial-coverage",
-    "href": "index.html#glacial-coverage",
-    "title": "AB322 Catchment Fluxes Tutorial",
-    "section": "5.1 Glacial coverage",
-    "text": "5.1 Glacial coverage"
-  },
-  {
-    "objectID": "index.html#ndvi",
-    "href": "index.html#ndvi",
-    "title": "AB322 Catchment Fluxes Tutorial",
-    "section": "5.2 NDVI",
-    "text": "5.2 NDVI"
-  },
-  {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "2  Introduction",
-    "section": "",
-    "text": "The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard.\n\n# Map"
-  },
-  {
-    "objectID": "intro.html#study-catchments",
-    "href": "intro.html#study-catchments",
-    "title": "2  Introduction",
-    "section": "2.2 Study Catchments",
-    "text": "2.2 Study Catchments\nThe rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard.\n\n# Map"
-  },
-  {
-    "objectID": "catchment_to_river.html",
-    "href": "catchment_to_river.html",
-    "title": "Catchment to River",
-    "section": "",
-    "text": "Note\n\n\n\nHere, we define a catchment (catchment basin, watershed, nedbørfelt) as the area from which rainfall flows into a river, lake, or reservoir."
-  },
-  {
-    "objectID": "river_to_sea.html",
-    "href": "river_to_sea.html",
-    "title": "River to Sea",
-    "section": "",
-    "text": "Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters (McGovern et al., 2020). However, these impacts are shaped by the characteristics of the inflowing freshwater, with concentrations of suspended sediments, nutrients, and contaminants varying among river catchments"
-  },
-  {
-    "objectID": "river_chemistry.html",
-    "href": "river_chemistry.html",
-    "title": "4  River water chemistry",
-    "section": "",
-    "text": "River water chemistry data were collected in May, June, August in 2017, 2018, 2019, 2020, 2021"
-  },
-  {
-    "objectID": "river_chemistry.html#solute-concentrations",
-    "href": "river_chemistry.html#solute-concentrations",
-    "title": "4  River water chemistry",
-    "section": "4.1 Solute Concentrations",
-    "text": "4.1 Solute Concentrations\n\n4.1.1 Carbon\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nShortcut for the pipe (%>%): shift-command-m\n\n\n\n\n4.1.2 Nutrients\n\n\n\n\n\n4.1.3 Contaminants (Hg)"
-  },
-  {
-    "objectID": "river_chemistry.html#temperature-and-precipitaion-driven-events",
-    "href": "river_chemistry.html#temperature-and-precipitaion-driven-events",
-    "title": "4  River water chemistry",
-    "section": "4.2 Temperature and Precipitaion-driven ‘events’",
-    "text": "4.2 Temperature and Precipitaion-driven ‘events’"
-  },
-  {
-    "objectID": "river_chemistry.html#solute-fluxes",
-    "href": "river_chemistry.html#solute-fluxes",
-    "title": "4  River water chemistry",
-    "section": "4.3 Solute Fluxes",
-    "text": "4.3 Solute Fluxes\nDischarge data in lacking from these catchments."
-  },
-  {
-    "objectID": "climate_change_impacts.html",
-    "href": "climate_change_impacts.html",
-    "title": "5  Climate Change Impacts",
-    "section": "",
-    "text": "Climate variables:\n\nGlacier coverage\nNDVI (greening)\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn Arctic regions, most river runoff is constrained to the summer melt season due to seasonal variations in sunlight and temperature. Despite their importance, for simplification, we do not account for seasonal variability in river discharge and water chemistry in this example."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "AB322 Catchment Fluxes Tutorial",
@@ -105,31 +7,52 @@
     "text": "UNIS course AB-322 is titled “Fluxes of Nutrients, Energy and Contaminants from Sea to Land”, a title that largely ignores the arguably larger fluxes moving in the opposite direction: from land to sea.\nHere, we have compiled an R tutorial focused on 5 Arctic rivers and their role in transporting nutrients, carbon and contaminants from thawing catchments to coastal waters in Isfjorden, Svalbard.\n\n\nThis tutorial requires you to have R and Rstudio installed on your computer. Go to the R website and follow the links for downloading.\nR for Windows: https://cran.r-project.org/bin/windows/base/.\nR for Macs: https://cran.r-project.org/bin/macosx/.\nR-studio: https://www.rstudio.com/products/rstudio/download/\nOnce you have Rstudio installed, click on File/New File/Rscript. We will use this new Rscript file for loading, cleaning and plotting catchment and river water chemistry data throughout this tutorial.\n\n\n\nIn addition, you will need to install several R packages. You can do this by copying and running the following lines of code in your new Rscript.\n\n#install.packages(\"tidyverse\") \n#install.packages(\"vegan\")\n\n\n\n\n\n\n\nThis book was created using Quarto."
   },
   {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "AB322 Catchment Fluxes Tutorial",
-    "section": "License",
-    "text": "License\nThis website is (and will always be) free to use, and is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 4.0 License."
-  },
-  {
     "objectID": "preface.html",
     "href": "preface.html",
-    "title": "1  Preface",
+    "title": "Preface",
     "section": "",
     "text": "Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters (McGovern et al., 2020). However, these impacts are shaped by the characteristics of the inflowing freshwater, with concentrations of suspended sediments, carbon, nutrients, and contaminants varying among river catchments with differing morphology, geology, vegetation cover, and glacial coverage (refs). In the Arctic, river catchments are spatially heterogeneous, seasonally variable, and facing rapid changes with climate warming.\nClimate change impacts on cross-ecosystem transport of solutes from Arctic catchments to coastal waters is driven both by changes in discharge, and in water chemistry. Discharge is increasing for many Arctic rivers due to increases in precipitation, glacial melt and permafrost thaw. In addition, thawing catchments and increased vegetative biomass ‘Arctic Greening’, are leading to changes in river water chemistry, with implications for receiving coastal waters.\nIn this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea."
   },
   {
     "objectID": "preface.html#ackowledgements",
     "href": "preface.html#ackowledgements",
-    "title": "1  Preface",
-    "section": "1.1 Ackowledgements",
-    "text": "1.1 Ackowledgements\nWater chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project ’TerrACE’and Framcenter project “FreshFate”; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes."
+    "title": "Preface",
+    "section": "Ackowledgements",
+    "text": "Ackowledgements\nWater chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project ’TerrACE’and Framcenter project “FreshFate”; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes."
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard."
   },
   {
     "objectID": "catchment_characteristics.html",
     "href": "catchment_characteristics.html",
-    "title": "3  Catchment Characteristics",
+    "title": "2  Catchment Characteristics",
     "section": "",
     "text": "Note\n\n\n\nHere, we define a catchment (catchment basin, watershed, nedbørfelt) as the area from which rainfall flows into a river, lake, or reservoir."
+  },
+  {
+    "objectID": "river_chemistry.html",
+    "href": "river_chemistry.html",
+    "title": "3  River water chemistry",
+    "section": "",
+    "text": "River water chemistry data were collected in May, June, August in 2017, 2018, 2019, 2020, 2021"
+  },
+  {
+    "objectID": "river_chemistry.html#solute-concentrations",
+    "href": "river_chemistry.html#solute-concentrations",
+    "title": "3  River water chemistry",
+    "section": "3.1 Solute Concentrations",
+    "text": "3.1 Solute Concentrations\n\n\n\n\n3.1.1 Carbon\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nShortcut for the pipe (%>%): shift-command-m\n\n\n\n\n3.1.2 Nutrients\n\n\n\n\n\n\n\n3.1.3 Contaminants"
+  },
+  {
+    "objectID": "climate_change_impacts.html",
+    "href": "climate_change_impacts.html",
+    "title": "4  Climate Change Impacts",
+    "section": "",
+    "text": "Climate variables:\n\nGlacier coverage\nNDVI (greening)\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn Arctic regions, most river runoff is constrained to the summer melt season due to seasonal variations in sunlight and temperature. Despite their importance, for simplification, we do not account for seasonal variability in river discharge and water chemistry in this example."
   }
 ]
