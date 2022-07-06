@@ -1,7 +1,7 @@
 # River water chemistry
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
 River water chemistry data were collected in May, June, August in 2017, 2018, 2019, 2020, 2021
@@ -9,27 +9,28 @@ River water chemistry data were collected in May, June, August in 2017, 2018, 20
 ## Solute Concentrations
 
 ```{r}
-#| warning: false
+# Load libraries
 library(tidyverse)
+
 # Load datafiles
 Water_Chem <- read_csv("Datafiles/AB322_Water_Chemistry.csv")
+
+# Arrange Month factor chronologically
+Water_Chem$Month <- factor(Water_Chem$Month,levels = c("May", "June", "August"))
 ```
 
 
 ### Carbon
 ```{r}
-#| warning: false
 # TOC, DOC, POC
-
-Water_Chem$Month <- factor(Water_Chem$Month,levels = c("May", "June", "August"))
 
 P1 <- Water_Chem %>% 
   select(River, Month, DOC, TOC, POC) %>% 
   pivot_longer(cols= -c(River, Month), names_to = "Carbon", values_to= 'Concentration') %>% 
-  ggplot(aes(x = River, y = Concentration, color = Month)) + 
+  ggplot(aes(x = Month, y = Concentration, color = Month)) + 
   geom_boxplot() +
   scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
-  facet_grid(~Carbon) +
+  facet_grid(Carbon~River, scales= "free") +
   ylab("Organic Carbon (umol/L)") + 
   xlab("River") +
   theme_classic() +
@@ -39,7 +40,7 @@ P1
 ```
 
 ::: {.callout-tip}
-Shortcut for the pipe (%>%): shift-command-m
+Shortcut for the pipe (%>%): shift-command-m (mac); shift-control-m (windows)
 :::
 
 ### Nutrients
@@ -49,12 +50,11 @@ Shortcut for the pipe (%>%): shift-command-m
 P2 <- Water_Chem %>% 
   select(River, Month, NO2_NO3, SiO2, PO4) %>% 
   pivot_longer(cols= -c(River, Month), names_to = "Nutrient", values_to= 'Concentration') %>% 
-  ggplot(aes(x = River, y = Concentration, color = Month)) + 
+  ggplot(aes(x = Month, y = Concentration, color = Month)) + 
   geom_boxplot() +
   scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
-  facet_wrap(~ Nutrient) +
+  facet_grid(Nutrient ~ River, scales = "free") +
   ylab("Concentration (umol/L)") + 
-  xlab("River") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
 
@@ -68,10 +68,10 @@ P2
 P3 <- Water_Chem %>% 
   select(River, Month, TotHg_Dissolved, TotHg_Particulate) %>% 
   pivot_longer(cols= -c(River, Month), names_to = "Mercury", values_to= 'Concentration') %>% 
-  ggplot(aes(x = River, y = Concentration, color = Month)) + 
+  ggplot(aes(x = Month, y = Concentration, color = Month)) + 
   geom_boxplot() +
   scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
-  facet_wrap(~ Mercury) +
+  facet_grid(Mercury ~ River, scales = "free") +
   ylab("Concentration (ug/L)") + 
   xlab("River") +
   theme_classic() +
@@ -79,42 +79,22 @@ P3 <- Water_Chem %>%
 
 P3
 ```
-
-# PCA
 ```{r}
-# PCA of water chemistry 
-library(vegan)
+#| eval: false
+# Hg per gram Carbon
 
-Water_Chem <- Water_Chem %>% drop_na()
-
-Envar <- Water_Chem %>% 
-  select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)) %>% 
-  mutate_at(vars(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)),~scale(.))
-
-# PCA in Vegan
-Water_Chem_PCA <- rda(Envar)
-Water_Chem_PCA
-
-# Plot
-PCAscores <- scores(Water_Chem_PCA, display = "sites") %>% as.data.frame() 
-PCAvect <- scores(Water_Chem_PCA, display = "species") %>% as.data.frame() %>% rownames_to_column("species")
-
-
-library(ggrepel)
-#Plot
-P4 <- ggplot() +
-  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = Water_Chem$Month), 
-             size= 3, alpha = 0.7) +
-  scale_color_manual(values=c("#8B9DAF","tan","lightsalmon4")) + 
+P4 <- Water_Chem %>% 
+  select(River, Month, TotHg_g_DOC, TotHg_g_POC) %>% 
+  pivot_longer(cols= -c(River, Month), names_to = "Mercury", values_to= 'Concentration') %>% 
+  ggplot(aes(x = Month, y = Concentration, color = Month)) + 
+  geom_boxplot() +
+  scale_color_manual(values=c("cornflowerblue","tan","lightsalmon4")) +
+  facet_grid(Mercury ~ River, scales = "free") +
+  ylab("Concentration (mg/gC)") + 
+  xlab("River") +
   theme_classic() +
-  geom_vline(xintercept = c(0), color = "grey70", linetype = 2) + 
-  geom_hline(yintercept = c(0), color = "grey70", linetype = 2)  +
-  labs(x = "PC1 ( %)", y = "PC2 ( %)") +  
-  geom_segment(data = PCAvect, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
-               arrow = arrow(length = unit(0.1, "cm")), col = "black") +
-  geom_text_repel(data = PCAvect, aes(x = PC1, y= PC2, label = species), parse = T, col="black", size = 3, segment.size = 0.15) +
-  theme(text = element_text(size=),legend.text = element_text(size=rel(0.6)),legend.title = element_blank(), 
-        panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+
 P4
 ```
 

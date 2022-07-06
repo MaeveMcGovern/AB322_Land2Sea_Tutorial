@@ -1,0 +1,109 @@
+# Catchment Comparison
+
+Now, we will combine data on catchment characteristics and river water chemistry to investigate differences among the 5 study catchments. 
+
+```{r}
+# Load libraries
+library(tidyverse)
+
+# Load dataset
+Water_Chem <- read_csv("Datafiles/AB322_Water_Chemistry.csv")
+```
+
+## Plot Morphology & Ground cover classes
+
+```{r}
+# Ggplots
+
+```
+
+
+
+## Relationships to river water chemistry 
+
+### PCA
+```{r}
+# PCA of water chemistry 
+library(vegan)
+library(ggrepel)
+
+Water_Chem <- Water_Chem %>% drop_na()
+
+Envar <- Water_Chem %>% 
+  select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)) %>% 
+  mutate_at(vars(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)),~scale(.))
+
+# PCA in Vegan
+Water_Chem_PCA <- rda(Envar)
+Water_Chem_PCA
+
+# Plot
+PCAscores <- scores(Water_Chem_PCA, display = "sites") %>% as.data.frame() 
+PCAvect <- scores(Water_Chem_PCA, display = "species") %>% as.data.frame() %>% rownames_to_column("species")
+
+
+#Plot
+P4 <- ggplot() +
+  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = Water_Chem$Month), 
+             size= 3, alpha = 0.7) +
+  scale_color_manual(values=c("#8B9DAF","tan","lightsalmon4")) + 
+  theme_classic() +
+  geom_vline(xintercept = c(0), color = "grey70", linetype = 2) + 
+  geom_hline(yintercept = c(0), color = "grey70", linetype = 2)  +
+  labs(x = "PC1 ( %)", y = "PC2 ( %)") +  
+  geom_segment(data = PCAvect, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
+               arrow = arrow(length = unit(0.1, "cm")), col = "black") +
+  geom_text_repel(data = PCAvect, aes(x = PC1, y= PC2, label = species), parse = T, col="black", size = 3, segment.size = 0.15) +
+  theme(text = element_text(size=),legend.text = element_text(size=rel(0.6)),legend.title = element_blank(), 
+        panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
+P4
+```
+
+
+### RDA
+```{r}
+# PCA of water chemistry 
+library(vegan)
+library(ggrepel)
+
+Water_Chem <- Water_Chem %>% drop_na()
+
+Envar <- Water_Chem %>% 
+  select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)) %>% 
+  mutate_at(vars(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, TotHg_Dissolved, TotHg_Particulate)),~scale(.))
+
+# PCA in Vegan
+Water_Chem_PCA <- rda(Envar)
+Water_Chem_PCA
+
+# Plot
+PCAscores <- scores(Water_Chem_PCA, display = "sites") %>% as.data.frame() 
+PCAvect <- scores(Water_Chem_PCA, display = "species") %>% as.data.frame() %>% rownames_to_column("species")
+
+
+#Plot
+P4 <- ggplot() +
+  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = Water_Chem$Month), 
+             size= 3, alpha = 0.7) +
+  scale_color_manual(values=c("#8B9DAF","tan","lightsalmon4")) + 
+  theme_classic() +
+  geom_vline(xintercept = c(0), color = "grey70", linetype = 2) + 
+  geom_hline(yintercept = c(0), color = "grey70", linetype = 2)  +
+  labs(x = "PC1 ( %)", y = "PC2 ( %)") +  
+  geom_segment(data = PCAvect, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
+               arrow = arrow(length = unit(0.1, "cm")), col = "black") +
+  geom_text_repel(data = PCAvect, aes(x = PC1, y= PC2, label = species), parse = T, col="black", size = 3, segment.size = 0.15) +
+  theme(text = element_text(size=),legend.text = element_text(size=rel(0.6)),legend.title = element_blank(), 
+        panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
+P4
+```
+
+
+
+
+
+::: {.callout-note caption="Seasonality!"}
+
+In Arctic regions, most river runoff is constrained to the summer melt season due to seasonal variations in sunlight and temperature. Despite their importance, for simplification, we do not account for seasonal variability in river discharge and water chemistry in this example.
+
+:::

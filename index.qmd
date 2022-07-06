@@ -19,13 +19,11 @@ Once you have Rstudio installed, click on File/New File/Rscript. We will use thi
 ### Install Packages
 In addition, you will need to install several R packages. You can do this by copying and running the following lines of code in your new Rscript. 
 
-```{r}
-#install.packages("tidyverse") 
-#install.packages("vegan")
+``` r
+# | eval: false
+install.packages("tidyverse") 
+install.packages("vegan")
 ```
-
-
-
 
 
 ::: {.callout-note appearance="simple"}

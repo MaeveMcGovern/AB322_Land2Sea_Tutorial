@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AB322 Land-2-Sea Tutorial - Introduction</title>
+<title>AB322 Land-2-Sea Tutorial - 2&nbsp; Spatial Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -36,20 +36,9 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
-<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="site_libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="./"><link href="/river_chemistry.html" rel="next"><link href="/preface.html" rel="prev"><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet"><link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"><link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet"></head>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="./"><link href="/catchment_comparison.html" rel="next"><link href="/river_chemistry.html" rel="prev"><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet"><link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"><link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet"></head>
 
 <body class="nav-sidebar floating">
 
@@ -57,7 +46,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Introduction</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial Analysis</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -92,7 +81,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">Introduction</a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -102,7 +91,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatial_analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial Analysis</span></a>
+  <a href="./spatial_analysis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -139,7 +128,8 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#study-catchments" id="toc-study-catchments" class="nav-link active" data-scroll-target="#study-catchments">Study Catchments</a></li>
+  <li><a href="#data-extraction" id="toc-data-extraction" class="nav-link active" data-scroll-target="#data-extraction"> <span class="header-section-number">2.1</span> Data Extraction</a></li>
+  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary"> <span class="header-section-number">2.2</span> Data Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -148,7 +138,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Introduction</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial Analysis</span></h1>
 </div>
 
 
@@ -162,15 +152,27 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="study-catchments" class="level2">
-<h2 class="anchored" data-anchor-id="study-catchments">Study Catchments</h2>
-<p>The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div id="htmlwidget-f3d2e66b9d0a552476df" style="width:100%;height:464px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f3d2e66b9d0a552476df">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM (default)",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[78.20443,78.33824,78.70672,78.44008,78.33513],[15.82462,16.31323,16.62619,16.5758,16.84831],10,null,null,{"interactive":true,"className":"","stroke":false,"color":["#68838B","#CD8C95","#8B668B","#4682B4","#6E8B3D"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#68838B","#CD8C95","#8B668B","#4682B4","#6E8B3D"],"fillOpacity":0.9},null,null,null,null,["Adventelva","Degeerelva","Ebbaelva","Gipsdalselva","Sassenelva"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#68838B","#CD8C95","#8B668B","#4682B4","#6E8B3D"],"labels":["Adventelva","Degeerelva","Ebbaelva","Gipsdalselva","Sassenelva"],"na_color":null,"na_label":"NA","opacity":0.6,"position":"topright","type":"factor","title":"River","extra":null,"layerId":null,"className":"info legend","group":null}]},{"method":"addLayersControl","args":[["OSM (default)","Esri.WorldImagery"],[],{"collapsed":false,"autoZIndex":true,"position":"bottomright"}]}],"setView":[[78.3,16.3],5,[]],"limits":{"lat":[78.20443,78.70672],"lng":[15.82462,16.84831]}},"evals":[],"jsHooks":[]}</script>
+
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
+<div class="callout-body-container callout-body" data-caption="Catchment">
+<p>Here, we define a catchment (catchment basin, watershed, nedbørfelt) as the area from which rainfall flows into a river, lake, or reservoir.</p>
+</div>
+</div>
+<section id="data-extraction" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-extraction"><span class="header-section-number">2.1</span> Data Extraction</h2>
+</section>
+<section id="data-summary" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="data-summary"><span class="header-section-number">2.2</span> Data Summary</h2>
 
 
 </section>
@@ -257,13 +259,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./preface.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./river_chemistry.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">River water chemistry</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./river_chemistry.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">River water chemistry</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./catchment_comparison.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Catchment Comparison</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

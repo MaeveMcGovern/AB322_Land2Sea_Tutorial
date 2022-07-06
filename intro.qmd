@@ -1,9 +1,8 @@
-# Introduction 
+# Introduction {.unnumbered}
 
 ## Study Catchments
 
 The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard. 
-
 
 ```{r}
 #| echo: false

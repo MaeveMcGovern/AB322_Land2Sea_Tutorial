@@ -3,17 +3,17 @@ project:
   output-dir: docs
 
 book:
-  title: "AB322 Catchment Fluxes Tutorial"
+  title: "AB322 Land-2-Sea Tutorial"
   author: "Isabell Eischeid & Maeve McGovern"
-  date: "July, 2022"
+  date: "Summer, 2022"
   cover-image: cover.png
   chapters:
     - index.qmd
     - preface.qmd
     - intro.qmd
-    - catchment_characteristics.qmd
     - river_chemistry.qmd
-    - climate_change_impacts.qmd
+    - spatial_analysis.qmd
+    - catchment_comparison.qmd
     - references.qmd
   appendices:
     - additional_work.qmd
