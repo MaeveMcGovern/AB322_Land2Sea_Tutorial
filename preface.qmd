@@ -6,5 +6,8 @@ Climate change impacts on cross-ecosystem transport of solutes from Arctic catch
 
 In this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea. 
 
-## Ackowledgements
-Water chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project 'TerrACE'and Framcenter project "FreshFate"; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes. 
+
+
+::: {.callout-note appearance="simple"}
+Water chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project 'TerrACE'and Framcenter project "FreshFate"; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes. This tutorial was created using [Quarto](https://quarto.org).
+:::

@@ -1,10 +1,16 @@
 # Catchment Comparison
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
 Now, we will combine data on catchment characteristics and river water chemistry to investigate differences among the 5 study catchments. 
 
 ```{r}
+#| echo: false
 # Load libraries
 library(tidyverse)
+library(vegan)
 
 # Load dataset
 Water_Chem <- read_csv("Datafiles/AB322_Water_Chemistry.csv")
@@ -23,6 +29,8 @@ Water_Chem <- read_csv("Datafiles/AB322_Water_Chemistry.csv")
 
 ### PCA
 ```{r}
+#| echo: false
+#| eval: false
 # PCA of water chemistry 
 library(vegan)
 library(ggrepel)
@@ -62,6 +70,8 @@ P4
 
 ### RDA
 ```{r}
+#| echo: false
+#| eval: false
 # PCA of water chemistry 
 library(vegan)
 library(ggrepel)
@@ -97,8 +107,6 @@ P4 <- ggplot() +
         panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
 P4
 ```
-
-
 
 
 

@@ -21,11 +21,18 @@ In addition, you will need to install several R packages. You can do this by cop
 
 ``` r
 # | eval: false
-install.packages("tidyverse") 
-install.packages("vegan")
+ 
+# Packages for data preparation and plotting
+install.packages(“tidyverse”)
+install.packages(“lubridate”)
+install.packages(“vegan”)
+
+# Packages for spatial data analysis
+install.packages(“sf”)
+install.packages(“terra”)
+install.packages(“units”)
+install.packages(“raster”)
+install.packages(“rgeos”)
+install.packages(“tmap”)	
 ```
 
-
-::: {.callout-note appearance="simple"}
-This book was created using [Quarto](https://quarto.org).
-:::

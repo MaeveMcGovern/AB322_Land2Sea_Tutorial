@@ -1,13 +1,482 @@
 # Spatial Analysis
 
-```{r}
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
+```{r}
+#| echo: false
+# Load libraries
+library(tidyverse)
+library(sf)
+library(terra)
+library(units)
+library(raster)
+library(rgeos)
+library(tmap)
+
+# Load NP datasets
+# Vector data
+water_f<-read_sf("Datafiles/spatial_data/S100_Vann_f.shp")
+water_l<-read_sf("Datafiles/spatial_data/S100_Vann_l.shp")
+glacier<-read_sf("Datafiles/spatial_data/S100_Isbreer_f.shp")
+svalbard<-read_sf("Datafiles/spatial_data/i_svalbard_outlineS250.shp")
+
+#Raster data (SpatRast format)
+dem<-rast("Datafiles/spatial_data/dem_svalbard_center.tif")
+ndvi<-rast("Datafiles/spatial_data/i_NDVI_average2000_2014.tif")
+veg_map<-rast("Datafiles/spatial_data/i_vegetation.tif")
+
+##Load our watershed info
+watershed<-read_sf("Datafiles/spatial_data/watershed5.shp")
+stations<-read_sf("Datafiles/spatial_data/sampling_stations.shp")
+```
 
 ::: {.callout-note caption="Catchment"}
 Here, we define a catchment (catchment basin, watershed, nedbørfelt) as the area from which rainfall flows into a river, lake, or reservoir.
 :::
+
+
 ## Data Extraction
 
-## Data Summary
+```{r}
+## Explore the data
+# Plot the watershed
+plot(st_geometry(watershed))
+```
+
+```{r}
+# Tmap
+# tmap_mode(mode = c("plot", "view"))
+
+tmap_mode(mode = c("plot"))
+# tmap_mode(mode = c("view"))
+
+
+tm_shape(watershed) + 
+tm_polygons() + 
+tm_shape(svalbard) +
+tm_polygons(col = "beige") +
+tm_graticules() +
+tm_shape(watershed) + 
+tm_polygons(col = "name", title='Watershed') + 
+tm_shape(water_f)+
+tm_fill(col = "blue") + 
+tm_shape(stations) + 
+tm_dots(size = 0.25) + 
+tm_scale_bar(breaks = c(0, 10, 20)) +
+tm_compass(position = c("left", "top")) +
+tm_layout(bg.color = "lightblue")
+```
+
+```{r}
+#Calculate areas of watersheds
+watershed$watershed_area<-set_units(st_area(watershed), "km2")
+```
+
+```{r}
+##Preparing the vector data
+
+#Change coordinate systems of NP files to match watershed file
+river_projected = st_transform(water_f, "EPSG:32633")
+riverline_projected = st_transform(water_l, "EPSG:32633")
+glacier_projected = st_transform(glacier, "EPSG:32633")
+stations_projected = st_transform(stations, "EPSG:32633")
+
+
+#Clip the NP files to the extent of the watersheds
+glacier_shed<-st_intersection(glacier_projected, watershed)
+river_shed<-st_intersection(river_projected, watershed)
+riverline_shed<-st_intersection(riverline_projected, watershed)
+
+```
+
+```{r}
+## For the next operation we are working in the old sf/raster formats
+# Change sf file format to sp file format
+watershed_sp <- sf:::as_Spatial(watershed$geometry)
+river_sp <- sf:::as_Spatial(river_shed$geometry)
+station_sp <- sf:::as_Spatial(stations_projected$geometry)
+```
+
+
+```{r}
+## Calculate the distance to larger water bodies
+
+#Join pieces of polygons to speed up processing
+river_sp2<-gUnion(river_sp, river_sp)
+
+#Make an empty raster layer with the extent of the watersheds
+r = raster(extent(watershed_sp),res=90)
+
+#Convert the raster into points (one for each raster cell)
+p = as(r,"SpatialPoints")
+
+#For each point calculate the distances to streams)
+d = gDistance(p, river_sp2, byid=TRUE)
+
+#Calculate the shortest distance for each point and add the result to the empty raster
+r[] = apply(d,2,min)
+
+# Convert the raster layer to SpatRast format and define the coordinate system
+distance<-rast(r)
+crs(distance)  <- "EPSG:32633"
+
+plot(distance)
+plot(st_geometry(watershed), add=TRUE)
+```
+
+#### Calculate the distance to the sampling station
+```{r}
+
+## Because we want the distance to a specific but not any station we need to split the watersheds first 
+
+# Ebbaelva
+
+#Subset the dataset to "Ebbaelva" only
+watershed_sub = subset(watershed, name == "Ebbaelva") 
+station_sub = subset(stations_projected, Station == "Ebbaelva") 
+
+#This part is the same for each watershed, so I am using general names so that the code doesn't change
+#Restore the spatial properties
+watershed_sub_sp <- sf:::as_Spatial(watershed_sub$geometry)
+station_sp <- sf:::as_Spatial(station_sub$geometry)
+
+#Make a raster of the extent of the watershed
+r<-raster(extent(watershed_sub_sp),res=30)
+
+#Convert the raster into points (one for each raster cell)
+p = as(r,"SpatialPoints")
+
+#For each point calculate the distances to streams)
+d = gDistance(p, station_sp, byid=TRUE)
+
+#Calculate the shortest distance for each point and add the result to the empty raster
+r[] = apply(d,2,min)
+
+#Convert the raster layer to SpatRast format and define the coordinate system
+r<-rast(r)
+crs(r)  <- "EPSG:32633"
+
+#Crop the distance t the extent of the watershed
+r_crop<-crop(r, vect(watershed_sub))
+r<-mask(r, vect(watershed_sub))
+
+#Name the raster file Ebbaelva
+Ebbaelva<-r
+
+##Now we can repeat this process for all the watersheds
+
+#Gipsdalselva
+watershed_sub = subset(watershed, name == "Gipsdalselva") 
+station_sub = subset(stations_projected, Station == "Gipsdalselva") 
+
+watershed_sub_sp <- sf:::as_Spatial(watershed_sub$geometry)
+station_sp <- sf:::as_Spatial(station_sub$geometry)
+
+r<-raster(extent(watershed_sub_sp),res=30)
+#Convert the raster into points (one for each raster cell)
+p = as(r,"SpatialPoints")
+
+#For each point calculate the distances to streams)
+d = gDistance(p, station_sp, byid=TRUE)
+
+#Calculate the shortest distance for each point and add the result to the empty raster
+r[] = apply(d,2,min)
+
+#Convert the raster layer to SpatRast format and define the coordinate system
+r<-rast(r)
+crs(r)  <- "EPSG:32633"
+
+r_crop<-crop(r, vect(watershed_sub))
+r<-mask(r, vect(watershed_sub))
+
+Gipsdalselva<-r
+
+#DeGeerelva
+watershed_sub = subset(watershed, name == "DeGeerelva") 
+station_sub = subset(stations_projected, Station == "DeGeerelva") 
+
+watershed_sub_sp <- sf:::as_Spatial(watershed_sub$geometry)
+station_sp <- sf:::as_Spatial(station_sub$geometry)
+
+r<-raster(extent(watershed_sub_sp),res=30)
+#Convert the raster into points (one for each raster cell)
+p = as(r,"SpatialPoints")
+
+#For each point calculate the distances to streams)
+d = gDistance(p, station_sp, byid=TRUE)
+
+#Calculate the shortest distance for each point and add the result to the empty raster
+r[] = apply(d,2,min)
+
+#Convert the raster layer to SpatRast format and define the coordinate system
+r<-rast(r)
+crs(r)  <- "EPSG:32633"
+
+r_crop<-crop(r, vect(watershed_sub))
+r<-mask(r, vect(watershed_sub))
+
+DeGeerelva<-r
+
+# Sassenelva
+watershed_sub = subset(watershed, name == "Sassenelva") 
+station_sub = subset(stations_projected, Station == "Sassenelva") 
+
+watershed_sub_sp <- sf:::as_Spatial(watershed_sub$geometry)
+station_sp <- sf:::as_Spatial(station_sub$geometry)
+
+r<-raster(extent(watershed_sub_sp),res=30)
+#Convert the raster into points (one for each raster cell)
+p = as(r,"SpatialPoints")
+
+#For each point calculate the distances to streams)
+d = gDistance(p, station_sp, byid=TRUE)
+
+#Calculate the shortest distance for each point and add the result to the empty raster
+r[] = apply(d,2,min)
+
+#Convert the raster layer to SpatRast format and define the coordinate system
+r<-rast(r)
+crs(r)  <- "EPSG:32633"
+
+r_crop<-crop(r, vect(watershed_sub))
+r<-mask(r, vect(watershed_sub))
+
+Sassenelva<-r
+
+# Adventelva
+watershed_sub = subset(watershed, name == "Adventelva") 
+station_sub = subset(stations_projected, Station == "Adventelva") 
+
+watershed_sub_sp <- sf:::as_Spatial(watershed_sub$geometry)
+station_sp <- sf:::as_Spatial(station_sub$geometry)
+
+r<-raster(extent(watershed_sub_sp),res=30)
+#Convert the raster into points (one for each raster cell)
+p = as(r,"SpatialPoints")
+
+#For each point calculate the distances to streams)
+d = gDistance(p, station_sp, byid=TRUE)
+
+#Calculate the shortest distance for each point and add the result to the empty raster
+r[] = apply(d,2,min)
+
+#Convert the raster layer to SpatRast format and define the coordinate system
+r<-rast(r)
+crs(r)  <- "EPSG:32633"
+
+r_crop <- crop(r, vect(watershed_sub))
+r <- mask(r, vect(watershed_sub))
+
+Adventelva <- r
+
+#As the final step, we merge the 5 distance rasters
+Elva<-merge(Gipsdalselva, Ebbaelva, DeGeerelva,Sassenelva,Adventelva)
+#And we give the merged raster a name (otherwise it will get the name "layer" when we stack them later)
+names(Elva)[1] <- "Elva"
+
+## Because the water-f shapefile is not very good, we make two buffers around the river lines shapefile 
+# for example to find potential erosion zones
+
+#Buffer50
+
+#We make the buffer of 50 meters around the lines
+buffer50 <- st_buffer(riverline_shed, dist = 50)
+
+#We vectorize the buffer
+v50 <- vect(buffer50)
+
+#We make an empty raster with the extent of the buffer shapefile and resolution of 10 meters
+r50 <- rast(v50,res=10)
+
+#We rasterize the buffer
+z50 <- rasterize(v50, r50, "name")
+
+#We give the buffer a unique name
+names(z50)[1] <- "buff50"
+
+#We repeat this for a 200 meter buffer
+#Buffer 200
+buffer200 <- st_buffer(riverline_shed, dist = 200)
+
+v200 <- vect(buffer200)
+r200 <- rast(v200,res=10)
+z200 <- rasterize(v200, r200, "name")
+names(z200)[1] <- "buff200"
+```
+
+#### Terrain properties from Raster files
+```{r}
+## Slope
+
+#Crop the DEM to the extent of the watersheds to speed up processing
+dem_crop<-crop(dem, vect(watershed))
+dem_crop<-mask(dem_crop, vect(watershed))
+
+#Calculate slope from the DEM
+slope<-terrain(dem_crop, v="slope", neighbors=8, unit="degrees")
+
+## NDVI
+ndvi
+
+#Change the range
+ndvi<-ndvi/1000
+```
+
+```{r}
+## Vegetation Map
+plot(veg_map)
+
+# Define a reclassification matrix
+m <- c(6, 5,
+       8, 7,
+       9, 7,
+       10, 7,
+       11, 7,
+       12, 7,
+       13, 7,
+       14,7,
+       15,7,
+       16,7,
+       17,6,
+       18,6,
+       19,6,
+       20,6,
+       21,5,
+       22,6
+)
+
+#Reclassify the map with help of the matrix
+rclmat <- matrix(m, ncol=2, byrow=TRUE)
+veg_rcl <- classify(veg_map, rclmat, include.lowest=TRUE)
+
+plot(veg_rcl)
+```
+
+```{r}
+#Crop the reclassified map to the extend
+veg_crop <- crop(veg_rcl, vect(watershed))
+veg_crop <- mask(veg_crop, vect(watershed))
+
+#Project the raster files to vegetation classes map
+ndvi_prj <- project(ndvi, veg_crop)
+dem_prj <- project(dem_crop, veg_crop)
+slope_prj <- project(slope, veg_crop)
+distance_prj <- project(distance, veg_crop)
+buffer50_prj <- project(z50, veg_crop)
+buffer200_prj <- project(z200, veg_crop)
+station_distance <- project(Elva, veg_crop)
+
+#Explore the raster layers
+tmap_mode(mode = c("view"))
+
+cls<-c("blue", "lightblue", "#ffffff80")
+
+tmap_options(check.and.fix = TRUE) 
+  
+tm_shape(dem_prj) + 
+  tm_graticules() +
+  tm_raster(style = "cont", 
+            title = "elevation (m a.s.l)",
+            palette = "-Spectral", alpha = 0.4)+
+tm_shape(slope_prj)+
+  tm_raster(alpha = 0.4, title='Slope - degrees')+
+  tm_shape(station_distance)+
+  tm_raster(style = "fixed", breaks = c(0,1000,5000,40000), palette=cls,  title='Distance to Station')+
+tm_shape(watershed)+
+  tm_borders()+
+tm_shape(stations)+
+  tm_dots()
+```
+
+```{r}
+#We stack all the layers on top of each other
+stack<-c(veg_crop, ndvi_prj, dem_prj, slope_prj, distance_prj, buffer50_prj, buffer200_prj, station_distance)
+
+#We extract all the stacked data for each watershed, this produces a long table with a row for each column
+watershed_df<-terra::extract(stack, vect(watershed)) 
+```
+
+
+#### Cleaning the table
+```{r}
+# Select + rename columns
+watershed_df<-dplyr::select(watershed_df, watershed = ID, vegetation = i_vegetation, ndvi = i_NDVI_average2000_2014, elevation = dem_svalbard_center, slope, 
+                            station_distance=Elva, river_distance = layer, river_buffer50 = buff50, river_buffer200 = buff200)
+
+# Rename watersheds
+watershed_df<-mutate(watershed_df,
+                     watershed = case_when(
+                       watershed == 1 ~ 'Ebbaelva',
+                       watershed == 2 ~ 'Gipsdalselva',
+                       watershed == 3 ~ 'DeGeerelva',
+                       watershed == 4 ~ 'Sassenelva',
+                       watershed == 5 ~ 'Adventelva'
+                     )
+)
+
+# Rename vegetation classes
+watershed_df<-mutate(watershed_df,
+                     vegetation = case_when(
+                       vegetation == 1 ~ 'marine',
+                       vegetation == 2 ~ 'freshwater',
+                       vegetation == 3 ~ 'shadow',
+                       vegetation == 4 ~ 'glacier',
+                       vegetation == 5 ~ 'barren',
+                       vegetation == 6 ~ 'heath',
+                       vegetation == 7 ~ 'moss'
+                     )
+)
+
+
+# recode to 1 for pixels that are within the buffer zone
+watershed_df<-mutate(watershed_df, river_buffer50 = ifelse(grepl ("elva", river_buffer50), "1", river_buffer50))
+watershed_df<-mutate(watershed_df, river_buffer200 = ifelse(grepl ("elva", river_buffer200), "1", river_buffer200))
+
+# Change vegetation classes to factors
+watershed_df$vegetation<-as.factor(watershed_df$vegetation)
+
+# Change NaN to NA
+watershed_df$slope[is.nan(watershed_df$slope)]<-NA
+watershed_df$elevation[is.nan(watershed_df$elevation)]<-NA
+
+# Save the file
+write.table(watershed_df, file = "Datafiles/spatial_data/watershed_dataframe.txt", append = FALSE, sep =  "\t", dec = ".",
+            row.names = FALSE, col.names = TRUE)
+```
+
+#### Calculate % area of glaciers and watershed based on polygons
+```{r}
+#Calculate the area of the glaciers within the watersheds
+glacier_shed$glacier_area <- st_area(glacier_shed$geometry)
+
+
+#Summarize the results for each watershed
+glacier_sum<-glacier_shed %>%
+  group_by(name) %>% 
+  summarise(glacier_area = sum(glacier_area))
+
+glacier_sum$glacier_area<-set_units(st_area(glacier_sum), "km2")
+
+#Remove the spatial information
+glacier_df = st_drop_geometry(glacier_sum)
+watershed_df1 = st_drop_geometry(watershed)
+
+#Join watershed and glacier dataframes
+watershed_info<-inner_join(watershed_df1, glacier_df)
+
+#Calculate % glacier within each watershed
+watershed_info$glacier_percent<-(watershed_info$glacier_area/watershed_info$watershed_area)*100
+
+#Change the percentage/km2 to nummeric format
+watershed_info$watershed_area<-as.numeric(watershed_info$watershed_area)
+watershed_info$glacier_area<-as.numeric(watershed_info$glacier_area)
+watershed_info$glacier_percent<-as.numeric(watershed_info$glacier_percent)
+
+watershed_info<-dplyr::select(watershed_info, watershed=name, watershed_km2=watershed_area, glacier_km2=glacier_area, glacier_percent)
+
+#Save the file
+write.table(watershed_info, file = "Datafiles/spatial_data/watershed_info.txt", append = FALSE, sep =  "\t", dec = ".",
+            row.names = FALSE, col.names = TRUE)
+```
