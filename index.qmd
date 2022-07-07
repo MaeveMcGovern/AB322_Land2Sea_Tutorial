@@ -1,8 +1,8 @@
 ## Welcome {.unnumbered}
 
-UNIS course AB-322 is titled "Fluxes of Nutrients, Energy and Contaminants from Sea to Land", a title that largely ignores the arguably larger fluxes moving in the opposite direction: from land to sea. 
+UNIS course AB-322 is titled "Fluxes of Nutrients, Energy and Contaminants from Sea to Land", but equally important are fluxes moving in the opposite direction: from land to sea. 
 
-Here, we have compiled an R tutorial focused on 5 Arctic rivers and their role in transporting nutrients, carbon and contaminants from thawing catchments to coastal waters in Isfjorden, Svalbard. 
+Here, we have compiled an R tutorial focused on 5 Arctic rivers and their role in transporting nutrients, carbon and contaminants from thawing watersheds to coastal waters in Isfjorden, Svalbard. 
 
 ### Installing R
 
@@ -20,8 +20,6 @@ Once you have Rstudio installed, click on File/New File/Rscript. We will use thi
 In addition, you will need to install several R packages. You can do this by copying and running the following lines of code in your new Rscript. 
 
 ``` r
-# | eval: false
- 
 # Packages for data preparation and plotting
 install.packages(“tidyverse”)
 install.packages(“lubridate”)
