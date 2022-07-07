@@ -1,13 +1,13 @@
 ## Preface {.unnumbered}
 
-Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters (McGovern et al., 2020). However, these impacts are shaped by the characteristics of the inflowing freshwater, with concentrations of suspended sediments, carbon, nutrients, and contaminants varying among river catchments with differing morphology, geology, vegetation cover, and glacial coverage (refs). In the Arctic, river catchments are spatially heterogeneous, seasonally variable, and facing rapid changes with climate warming. 
+Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters [@mcgovern2020terrestrial; @halbach2019tidewater]. However, these impacts are shaped by the characteristics of the incoming freshwater, with concentrations of suspended sediments, carbon, nutrients, and contaminants varying among watersheds with differing morphology, geology, vegetation cover, and glacial coverage [@huser2022spatial; @coch2018summer; @giesbrecht2022watershed]. In the Arctic, watersheds are spatially heterogeneous, seasonally variable, and facing rapid changes with climate warming. 
 
-Climate change impacts on cross-ecosystem transport of solutes from Arctic catchments to coastal waters is driven both by changes in discharge, and in water chemistry. Discharge is increasing for many Arctic rivers due to increases in precipitation, glacial melt and permafrost thaw. In addition, thawing catchments and increased vegetative biomass 'Arctic Greening', are leading to changes in river water chemistry, with implications for receiving coastal waters. 
+Climate change impacts on cross-ecosystem transport of solutes from Arctic watersheds to coastal areas is driven both by changes in discharge, and in water chemistry. Discharge is increasing for many Arctic rivers due to increases in precipitation, glacial melt and permafrost thaw [@shiklomanov2021river]. In addition, receding glaciers and increased vegetative biomass 'Arctic Greening', are leading to changes in river water chemistry, with implications for receiving coastal waters [@wrona2016transitions]. 
 
-In this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea. 
+In this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from watershed soils to rivers, and (2) from rivers to sea. 
 
 
 
 ::: {.callout-note appearance="simple"}
-Water chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project 'TerrACE'and Framcenter project "FreshFate"; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes. This tutorial was created using [Quarto](https://quarto.org).
+Water chemistry data used in this tutorial include published data [@mcgovern2020terrestrial] and generated data for teaching purposes. This tutorial was created using [Quarto](https://quarto.org).
 :::

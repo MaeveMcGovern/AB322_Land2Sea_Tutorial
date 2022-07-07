@@ -25,10 +25,12 @@ library(tmap)
 
 ```{r}
 # Load datafiles
-Water_Chem <- read_csv("Datafiles/AB322_Water_Chemistry.csv")
+water_chem <- read_csv("datafiles/AB322_Water_Chemistry.csv") %>% 
+  mutate(Date = dmy(Date)) %>%
+  mutate(year = year(Date),month = month(Date, label = TRUE), day = day(Date)) 
 
-# Arrange Month factor chronologically
-Water_Chem$Month <- factor(Water_Chem$Month,levels = c("May", "June", "August", "September"))
+# Arrange month factor chronologically
+water_chem$month <- factor(water_chem$month, levels = c("May", "Jun", "Aug", "Sep"))
 ```
 
 ## Data Preparation
@@ -43,19 +45,17 @@ Shortcut for the pipe (%>%): shift-command-m (mac); shift-control-m (windows)
 ### Carbon
 ```{r}
 # TOC, DOC, POC
-
-P1 <- Water_Chem %>% 
-  dplyr::select(River, Month, DOC) %>% drop_na() %>% 
-  ggplot(aes(x = Month, y = DOC, fill = Month)) + 
-  geom_boxplot() +
-  scale_fill_manual(values=c("cornflowerblue","tan","lightsalmon4", "blue")) +
+P1 <- water_chem %>% 
+  dplyr::select(River, month, DOC_mg_L) %>% 
+  ggplot(aes(x = month, y = DOC_mg_L, color = month)) + 
+  geom_point(size = 2, aes = 0.8) +
+  scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(~River, scales= "free") +
   ylab("DOC (mg C/L)") + 
   xlab("River") +
-  theme_classic() +
+  theme_light() +
   scale_y_log10() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
-
 P1
 ```
 
@@ -63,15 +63,16 @@ P1
 ```{r}
 # NO3_NO2, SiO2, PO4
 
-P2 <- Water_Chem %>% 
-  dplyr::select(River, Month, NO2_NO3, SiO2, PO4) %>% 
-  pivot_longer(cols= -c(River, Month), names_to = "Nutrient", values_to= 'Concentration') %>% 
-  ggplot(aes(x = Month, y = Concentration, fill = Month)) + 
-  geom_boxplot() +
-  scale_fill_manual(values=c("cornflowerblue","tan","lightsalmon4", "blue")) +
+P2 <- water_chem %>% 
+  dplyr::select(River, month, NO2_NO3_umol_L, SiO2_umol_L, PO4_umol_L) %>% drop_na() %>% 
+  pivot_longer(cols= -c(River, month), names_to = "Nutrient", values_to= 'Concentration') %>% 
+  ggplot(aes(x = month, y = Concentration, fill = month)) + 
+  geom_point(size = 2, aes= 0.8) +
+  scale_fill_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(Nutrient ~ River, scales = "free") +
   ylab("Concentration (umol/L)") + 
-  theme_classic() +
+  theme_light() +
+  scale_y_log10() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
 
 P2
@@ -81,34 +82,39 @@ P2
 ```{r}
 # Hg (Particulate and dissolved)
 
-P3 <- Water_Chem %>% 
-  dplyr::select(River, Month, TotHg_Dissolved, TotHg_Particulate) %>% 
-  pivot_longer(cols= -c(River, Month), names_to = "Mercury", values_to= 'Concentration') %>% 
-  ggplot(aes(x = Month, y = Concentration, fill = Month)) + 
-  geom_boxplot() +
-  scale_fill_manual(values=c("cornflowerblue","tan","lightsalmon4", "blue")) +
+P3 <- water_chem %>% 
+  dplyr::select(River, month, dTotHg_ng_L, pTotHg_ng_L) %>% drop_na() %>% 
+  pivot_longer(cols= -c(River, month), names_to = "Mercury", values_to= 'Concentration') %>% 
+  ggplot(aes(x = month, y = Concentration, fill = month)) + 
+  geom_point(size = 2, aes = 0.8) +
+  scale_fill_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(Mercury ~ River, scales = "free") +
   ylab("Concentration (ug/L)") + 
   xlab("River") +
-  theme_classic() +
+  theme_light() +
+  scale_y_log10() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
 
 P3
 ```
+
+
+
+
 ```{r}
 #| eval: false
 # Hg per gram Carbon
 
-P4 <- Water_Chem %>% 
-  dplyr::select(River, Month, TotHg_g_DOC, TotHg_g_POC) %>% 
-  pivot_longer(cols= -c(River, Month), names_to = "Mercury", values_to= 'Concentration') %>% 
-  ggplot(aes(x = Month, y = Concentration, fill = Month)) + 
-  geom_boxplot() +
-  scale_fill_manual(values=c("cornflowerblue","tan","lightsalmon4", "blue")) +
+P4 <- water_chem %>% 
+  dplyr::select(River, month, dTotHg_g_DOC, pTotHg_g_POC) %>% 
+  pivot_longer(cols= -c(River, month), names_to = "Mercury", values_to= 'Concentration') %>% 
+  ggplot(aes(x = month, y = Concentration, color = month)) + 
+  geom_point(size = 2, aes= 0.8) +
+  scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(Mercury ~ River, scales = "free") +
   ylab("Concentration (mg/gC)") + 
   xlab("River") +
-  theme_classic() +
+  theme_light() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
 
 P4

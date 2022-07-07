@@ -15,6 +15,25 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <script id="quarto-search-options" type="application/json">{
@@ -96,7 +115,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./catchment_comparison.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Catchment Comparison</span></a>
+  <a href="./watershed_comparison.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Watershed Comparison</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -104,21 +123,6 @@ ul.task-list{list-style: none;}
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-    <div class="sidebar-item-container"> 
-        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
-      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
-        <i class="bi bi-chevron-right ms-2"></i>
-      </a>
-    </div>
-    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional_work.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Additional Work</span></a>
-  </div>
-</li>
-    </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -145,21 +149,44 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters (McGovern et al., 2020). However, these impacts are shaped by the characteristics of the inflowing freshwater, with concentrations of suspended sediments, carbon, nutrients, and contaminants varying among river catchments with differing morphology, geology, vegetation cover, and glacial coverage (refs). In the Arctic, river catchments are spatially heterogeneous, seasonally variable, and facing rapid changes with climate warming.</p>
-<p>Climate change impacts on cross-ecosystem transport of solutes from Arctic catchments to coastal waters is driven both by changes in discharge, and in water chemistry. Discharge is increasing for many Arctic rivers due to increases in precipitation, glacial melt and permafrost thaw. In addition, thawing catchments and increased vegetative biomass ‘Arctic Greening’, are leading to changes in river water chemistry, with implications for receiving coastal waters.</p>
-<p>In this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from catchment soils to rivers, and (2) from rivers to sea.</p>
+<p>Downstream impacts of terrestrial inputs on coastal waters can be dramatic, with impacts on light climate, nutrient availability and contamination in fjord surface waters <span class="citation" data-cites="mcgovern2020terrestrial halbach2019tidewater">(<a href="references.html#ref-mcgovern2020terrestrial" role="doc-biblioref">McGovern et al. 2020</a>; <a href="references.html#ref-halbach2019tidewater" role="doc-biblioref">Halbach et al. 2019</a>)</span>. However, these impacts are shaped by the characteristics of the incoming freshwater, with concentrations of suspended sediments, carbon, nutrients, and contaminants varying among watersheds with differing morphology, geology, vegetation cover, and glacial coverage <span class="citation" data-cites="huser2022spatial coch2018summer giesbrecht2022watershed">(<a href="references.html#ref-huser2022spatial" role="doc-biblioref">Huser et al. 2022</a>; <a href="references.html#ref-coch2018summer" role="doc-biblioref">Coch et al. 2018</a>; <a href="references.html#ref-giesbrecht2022watershed" role="doc-biblioref">Giesbrecht et al. 2022</a>)</span>. In the Arctic, watersheds are spatially heterogeneous, seasonally variable, and facing rapid changes with climate warming.</p>
+<p>Climate change impacts on cross-ecosystem transport of solutes from Arctic watersheds to coastal areas is driven both by changes in discharge, and in water chemistry. Discharge is increasing for many Arctic rivers due to increases in precipitation, glacial melt and permafrost thaw <span class="citation" data-cites="shiklomanov2021river">(<a href="references.html#ref-shiklomanov2021river" role="doc-biblioref">Shiklomanov et al. 2021</a>)</span>. In addition, receding glaciers and increased vegetative biomass ‘Arctic Greening’, are leading to changes in river water chemistry, with implications for receiving coastal waters <span class="citation" data-cites="wrona2016transitions">(<a href="references.html#ref-wrona2016transitions" role="doc-biblioref">Wrona et al. 2016</a>)</span>.</p>
+<p>In this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients and contaminants: (1) from watershed soils to rivers, and (2) from rivers to sea.</p>
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Water chemistry data used in this tutorial include published data (McGovern et al., 2020) and unpublished data collected by NIVA under the NFR project ’TerrACE’and Framcenter project “FreshFate”; PI, Amanda Poste. In addition, some of the data used here are generated for teaching purposes. This tutorial was created using <a href="https://quarto.org">Quarto</a>.</p>
+<p>Water chemistry data used in this tutorial include published data <span class="citation" data-cites="mcgovern2020terrestrial">(<a href="references.html#ref-mcgovern2020terrestrial" role="doc-biblioref">McGovern et al. 2020</a>)</span> and generated data for teaching purposes. This tutorial was created using <a href="https://quarto.org">Quarto</a>.</p>
 </div>
 </div>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-coch2018summer" class="csl-entry" role="doc-biblioentry">
+Coch, Caroline, Scott F Lamoureux, Christian Knoblauch, Isabell Eischeid, Michael Fritz, Jaroslav Obu, and Hugues Lantuit. 2018. <span>“Summer Rainfall Dissolved Organic Carbon, Solute, and Sediment Fluxes in a Small Arctic Coastal Catchment on Herschel Island (Yukon Territory, Canada).”</span> <em>Arctic Science</em> 4 (4): 750–80.
+</div>
+<div id="ref-giesbrecht2022watershed" class="csl-entry" role="doc-biblioentry">
+Giesbrecht, Ian JW, Suzanne E Tank, Gordon W Frazer, Eran Hood, Santiago G Gonzalez Arriola, David E Butman, David V D’Amore, David Hutchinson, Allison Bidlack, and Ken P Lertzman. 2022. <span>“Watershed Classification Predicts Streamflow Regime and Organic Carbon Dynamics in the Northeast Pacific Coastal Temperate Rainforest.”</span> <em>Global Biogeochemical Cycles</em> 36 (2): e2021GB007047.
+</div>
+<div id="ref-halbach2019tidewater" class="csl-entry" role="doc-biblioentry">
+Halbach, Laura, Mikko Vihtakari, Pedro Duarte, Alistair Everett, Mats A Granskog, Haakon Hop, Hanna M Kauko, et al. 2019. <span>“Tidewater Glaciers and Bedrock Characteristics Control the Phytoplankton Growth Environment in a Fjord in the Arctic.”</span> <em>Frontiers in Marine Science</em> 6: 254.
+</div>
+<div id="ref-huser2022spatial" class="csl-entry" role="doc-biblioentry">
+Huser, Brian J, Martyn N Futter, Daniel Bogan, John E Brittain, Joseph M Culp, Willem Goedkoop, Iliada Gribovskaya, et al. 2022. <span>“Spatial and Temporal Variation in Arctic Freshwater Chemistry—Reflecting Climate-Induced Landscape Alterations and a Changing Template for Biodiversity.”</span> <em>Freshwater Biology</em> 67 (1): 14–29.
+</div>
+<div id="ref-mcgovern2020terrestrial" class="csl-entry" role="doc-biblioentry">
+McGovern, Maeve, Alexey K Pavlov, Anne Deininger, Mats A Granskog, Eva Leu, Janne E Søreide, and Amanda E Poste. 2020. <span>“Terrestrial Inputs Drive Seasonality in Organic Matter and Nutrient Biogeochemistry in a High Arctic Fjord System (Isfjorden, Svalbard).”</span> <em>Frontiers in Marine Science</em> 7: 542563.
+</div>
+<div id="ref-shiklomanov2021river" class="csl-entry" role="doc-biblioentry">
+Shiklomanov, Alexander, Stephen Déry, Mikhail Tretiakov, Daqing Yang, Dmitry Magritsky, Alex Georgiadi, and Wenqing Tang. 2021. <span>“River Freshwater Flux to the Arctic Ocean.”</span> In <em>Arctic Hydrology, Permafrost and Ecosystems</em>, 703–38. Springer.
+</div>
+<div id="ref-wrona2016transitions" class="csl-entry" role="doc-biblioentry">
+Wrona, Frederick J, Margareta Johansson, Joseph M Culp, Alan Jenkins, Johanna Mård, Isla H Myers-Smith, Terry D Prowse, Warwick F Vincent, and Philip A Wookey. 2016. <span>“Transitions in Arctic Ecosystems: Ecological Implications of a Changing Hydrological Regime.”</span> <em>Journal of Geophysical Research: Biogeosciences</em> 121 (3): 650–74.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

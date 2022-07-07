@@ -1,8 +1,8 @@
 # Introduction {.unnumbered}
 
-## Study Catchments
+## Isfjorden Watersheds
 
-The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain catchments with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard. 
+The rivers investigated in this tutorial include Adventelva, Sassenelva, DeGeerelva, Gipsdalselva and Ebbaelva. These rivers drain watersheds with varying morphology and vegetation cover and all flow into the Isfjorden system on the west coast of Svalbard. 
 
 ```{r}
 #| echo: false
@@ -12,7 +12,7 @@ library(tidyverse)
 
 # Leaflet map of stations with mean annual DOC concentrations
 
-Stations <-read_csv("Datafiles/AB322_Water_Chemistry.csv") %>% select(c(River, Latitude, Longitude)) %>% distinct() %>% drop_na()
+Stations <-read_csv("datafiles/AB322_Water_Chemistry3.csv") %>% select(c(River, Latitude, Longitude)) %>% distinct() %>% drop_na()
 pal <- colorFactor(c("lightblue4", "lightpink3", "plum4", "steelblue", "darkolivegreen4"), domain = c("Adventelva", "Sassenelva", "Degeerelva", "Gipsdalselva", "Ebbaelva"))
 
 m <- leaflet(Stations) %>% 
