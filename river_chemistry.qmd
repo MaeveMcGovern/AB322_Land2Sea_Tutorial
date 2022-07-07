@@ -1,4 +1,4 @@
-# River water chemistry
+# River Water Chemistry
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
@@ -6,31 +6,19 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 
 ## Load libraries 
+
 ```{r}
 # Packages for data preparation and plotting
 library(tidyverse)
 library(lubridate)
 library(vegan)
-
-# Packages for Spatial Analysis
-library(sf)
-library(terra)
-library(units)
-library(raster)
-library(rgeos)
-library(tmap)	
 ```
 
 ## Load datafiles
 
 ```{r}
-# Load datafiles
-water_chem <- read_csv("datafiles/AB322_Water_Chemistry.csv") %>% 
-  mutate(Date = dmy(Date)) %>%
-  mutate(year = year(Date),month = month(Date, label = TRUE), day = day(Date)) 
-
-# Arrange month factor chronologically
-water_chem$month <- factor(water_chem$month, levels = c("May", "Jun", "Aug", "Sep"))
+# Load datafile
+water_chem <- read_csv("datafiles/AB322_Water_Chemistry.csv")
 ```
 
 ## Data Preparation
@@ -39,6 +27,23 @@ water_chem$month <- factor(water_chem$month, levels = c("May", "Jun", "Aug", "Se
 Shortcut for the pipe (%>%): shift-command-m (mac); shift-control-m (windows)
 :::
 
+```{r}
+
+water_chem <- water_chem %>% 
+  mutate(Date = dmy(Date)) %>%
+  mutate(year = year(Date),month = month(Date, label = TRUE), day = day(Date)) %>% 
+  rename("DOC" = "DOC_mg_L", 
+         "POC" = "POC_mg_L", 
+         "NO2_NO3" = "NO2_NO3_umol_L", 
+         "PO4" = "PO4_umol_L", 
+         "SiO2" = "SiO2_umol_L", 
+         "SPM" = "SPM_mg_L", 
+         "dTotHg" = "dTotHg_ng_L", 
+         "pTotHg" = "pTotHg_ng_L")
+
+# Arrange month factor chronologically
+water_chem$month <- factor(water_chem$month, levels = c("May", "Jun", "Aug", "Sep")) 
+```
 
 ## Explore water chemistry data
 
@@ -46,16 +51,17 @@ Shortcut for the pipe (%>%): shift-command-m (mac); shift-control-m (windows)
 ```{r}
 # TOC, DOC, POC
 P1 <- water_chem %>% 
-  dplyr::select(River, month, DOC_mg_L) %>% 
-  ggplot(aes(x = month, y = DOC_mg_L, color = month)) + 
+  dplyr::select(River, month, DOC, POC) %>% 
+  pivot_longer(cols= -c(River, month), names_to = "Carbon", values_to= 'Concentration') %>% 
+  ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes = 0.8) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
-  facet_grid(~River, scales= "free") +
-  ylab("DOC (mg C/L)") + 
-  xlab("River") +
+  facet_grid(Carbon~River, scales= "free") +
+  ylab("Organic carbon (mg C/L)") + 
   theme_light() +
-  scale_y_log10() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+  scale_y_log10() + xlab(NULL) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), 
+        text = element_text(size=15))
 P1
 ```
 
@@ -64,16 +70,17 @@ P1
 # NO3_NO2, SiO2, PO4
 
 P2 <- water_chem %>% 
-  dplyr::select(River, month, NO2_NO3_umol_L, SiO2_umol_L, PO4_umol_L) %>% drop_na() %>% 
+  dplyr::select(River, month, NO2_NO3, SiO2, PO4) %>% drop_na() %>% 
   pivot_longer(cols= -c(River, month), names_to = "Nutrient", values_to= 'Concentration') %>% 
-  ggplot(aes(x = month, y = Concentration, fill = month)) + 
+  ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes= 0.8) +
-  scale_fill_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
+  scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(Nutrient ~ River, scales = "free") +
   ylab("Concentration (umol/L)") + 
   theme_light() +
-  scale_y_log10() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+  scale_y_log10() + xlab(NULL) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), 
+        text = element_text(size=15))
 
 P2
 ```
@@ -83,17 +90,18 @@ P2
 # Hg (Particulate and dissolved)
 
 P3 <- water_chem %>% 
-  dplyr::select(River, month, dTotHg_ng_L, pTotHg_ng_L) %>% drop_na() %>% 
+  dplyr::select(River, month, dTotHg, pTotHg) %>% drop_na() %>% 
   pivot_longer(cols= -c(River, month), names_to = "Mercury", values_to= 'Concentration') %>% 
-  ggplot(aes(x = month, y = Concentration, fill = month)) + 
+  ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes = 0.8) +
-  scale_fill_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
+  scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(Mercury ~ River, scales = "free") +
-  ylab("Concentration (ug/L)") + 
+  ylab("Concentration (ng/L)") + 
   xlab("River") +
   theme_light() +
-  scale_y_log10() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+  scale_y_log10() + xlab(NULL) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), 
+        text = element_text(size = 15))
 
 P3
 ```
@@ -105,28 +113,21 @@ P3
 #| eval: false
 # Hg per gram Carbon
 
-P4 <- water_chem %>% 
-  dplyr::select(River, month, dTotHg_g_DOC, pTotHg_g_POC) %>% 
+P4 <- water_chem %>%
+  mutate(dTotHg_gC = dTotHg/DOC) %>% 
+  mutate(pTotHg_gC = pTotHg/POC) %>%
+  dplyr::select(River, month, dTotHg_gC, pTotHg_gC) %>% drop_na() %>% 
   pivot_longer(cols= -c(River, month), names_to = "Mercury", values_to= 'Concentration') %>% 
   ggplot(aes(x = month, y = Concentration, color = month)) + 
-  geom_point(size = 2, aes= 0.8) +
+  geom_point(size = 2, aes = 0.8) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
   facet_grid(Mercury ~ River, scales = "free") +
-  ylab("Concentration (mg/gC)") + 
+  ylab("Concentration (ng/gC)") + 
   xlab("River") +
   theme_light() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=14))
+  scale_y_log10() + xlab(NULL) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=15))
 
 P4
 ```
-
-
-::: {.callout-note caption="Fluxes"}
-Fluxes, rather than concentration data are more relevant for evaluating implications on coastal ecosystems and the Arctic ocean. Fluxes are calculated using concentrations and discharge. 
-:::
-
- 
-
-
-
 

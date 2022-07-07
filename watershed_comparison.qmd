@@ -4,7 +4,6 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
-Now, we will combine data on catchment characteristics and river water chemistry to investigate differences among the 5 study catchments. 
 
 ```{r}
 #| echo: false
@@ -17,7 +16,15 @@ library(ggrepel)
 # Load datafiles
 water_chem <- read_csv("datafiles/AB322_Water_Chemistry.csv") %>% 
   mutate(Date = dmy(Date)) %>%
-  mutate(year = year(Date), month = month(Date, label = TRUE), day = day(Date)) 
+  mutate(year = year(Date), month = month(Date, label = TRUE), day = day(Date)) %>% 
+  rename("DOC" = "DOC_mg_L", 
+         "POC" = "POC_mg_L", 
+         "NO2_NO3" = "NO2_NO3_umol_L", 
+         "PO4" = "PO4_umol_L", 
+         "SiO2" = "SiO2_umol_L", 
+         "SPM" = "SPM_mg_L", 
+         "dTotHg" = "dTotHg_ng_L", 
+         "pTotHg" = "pTotHg_ng_L")
 
 # Arrange month factor chronologically
 water_chem$month <- factor(water_chem$month, levels = c("May", "Jun", "Aug", "Sep"))
@@ -120,19 +127,19 @@ watershed_class_proportion_pivot<-pivot_longer(watershed_class_proportion,
             values_to = 'percentage')
 
 #Plot the data with GGPLOT
-ggplot(data=watershed_class_proportion_pivot, aes(x=watershed, y=percentage, fill=class)) +
+ggplot(data = watershed_class_proportion_pivot, aes(x = watershed, y = percentage, fill = class)) +
   geom_bar(stat="identity")
 
 #Change the axis and from stacked to parallel
-ggplot(data=watershed_class_proportion_pivot, aes(x=class, y=percentage, fill=watershed)) +
-  geom_bar(stat="identity", color="black", position=position_dodge())
+ggplot(data = watershed_class_proportion_pivot, aes(x = class, y = percentage, fill = watershed)) +
+  geom_bar(stat="identity", color="black", position = position_dodge())
 ```
 
 ### Calculate the percentage bare ground within 50m of the river
 ```{r}
 
 #Sum the vegetation classes per watershed
-buffer50_class_proportion<-watershed_df %>%
+buffer50_class_proportion <- watershed_df %>%
   filter(river_buffer50 == "1") %>% 
   group_by(watershed, vegetation) %>% 
   summarise_at(c("count"), sum, na.rm = TRUE) %>% 
@@ -141,7 +148,7 @@ buffer50_class_proportion<-watershed_df %>%
     values_from = 'count')
 
 #Calculate the percentages per vegetation class and watershed
-buffer50_class_proportion<-buffer50_class_proportion %>% mutate(total = sum(c_across(where(is.numeric)), na.rm = TRUE)) %>% 
+buffer50_class_proportion <- buffer50_class_proportion %>% mutate(total = sum(c_across(where(is.numeric)), na.rm = TRUE)) %>% 
   ungroup() %>% 
   mutate(across(where(is.numeric), ~ . / total*100))
 
@@ -164,101 +171,121 @@ write_csv(watershed_info_joined, "datafiles/spatial_data/watershed_info_joined.c
 
 ## Relationships to river water chemistry 
 
+```{r}
+watershed_info_joined <- read_csv("datafiles/spatial_data/watershed_info_joined.csv") 
+```
+
+
+
 ### PCA
 ```{r}
 
 # PCA of water chemistry 
+water_chem2 <- water_chem %>% rename("watershed" = "River") %>% 
+  mutate(watershed = str_replace_all(watershed, "Degeerelva", "DeGeerelva"))
 
-water_chem2 <- water_chem %>% drop_na() %>% 
-  rename("DOC" = "DOC_mg_L", 
-         "POC" = "POC_mg_L", 
-         "NO2_NO3" = "NO2_NO3_umol_L", 
-         "PO4" = "PO4_umol_L", 
-         "SiO2" = "SiO2_umol_L", 
-         "SPM" = "SPM_mg_L", 
-         "dTotHg" = "dTotHg_ng_L", 
-         "pTotHg" = "pTotHg_ng_L")
-
+# Dataset for calculating PCA
 Envar <- water_chem2 %>% 
-  select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)) %>% 
+  dplyr::select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)) %>% 
   mutate_at(vars(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)),~scale(.))
+
+Envar2 <- water_chem2 %>% 
+  dplyr::select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg))
+Envar <- scale(Envar2)
 
 # PCA in Vegan
 water_chem_PCA <- rda(Envar)
 water_chem_PCA
 (3.1505/8)*100
 (2.1688/8)*100
+
 # Plot
 PCAscores <- scores(water_chem_PCA, display = "sites") %>% as.data.frame() 
 PCAvect <- scores(water_chem_PCA, display = "species") %>% as.data.frame() %>% rownames_to_column("species")
 
+fit_envar <- envfit(water_chem_PCA, Envar2, perm = 999, na.rm = T) %>% 
+  scores(., display = "vectors") %>% 
+  as.data.frame() %>% 
+  rownames_to_column("species")
 
 #Plot
-P4 <- ggplot() +
-  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = water_chem$month), 
-             size= 3, alpha = 0.7) +
+Plot_PCA <- ggplot() +
+  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = water_chem2$month, shape = water_chem2$watershed), size= 3, alpha = 0.7) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) + 
   theme_classic() +
   geom_vline(xintercept = c(0), color = "grey70", linetype = 2) + 
-  geom_hline(yintercept = c(0), color = "grey70", linetype = 2)  +
-  labs(x = "PC1 (39 %)", y = "PC2 (27%)") +  
-  geom_segment(data = PCAvect, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
-               arrow = arrow(length = unit(0.1, "cm")), col = "black") +
-  geom_text_repel(data = PCAvect, aes(x = PC1, y= PC2, label = species), parse = T, col="black", size = 3, segment.size = 0.15) +
-  theme(text = element_text(size=),legend.text = element_text(size=rel(0.6)),legend.title = element_blank(), 
-        panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
-P4
+  geom_hline(yintercept = c(0), color = "grey70", linetype = 2) +
+  labs(x = "PC1 (39 %)", y = "PC2 (27 %)") + 
+  #stat_ellipse(data = PCAscores, aes(x = PC1, y = PC2, fill = factor(water_chem2$watershed)), 
+             #  geom="polygon", level=0.8, alpha=0.2) +
+  geom_segment(data = fit_envar, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
+               arrow = arrow(length = unit(0.1, "cm")), col = "gray45") +
+  geom_text_repel(data = fit_envar, aes(x = PC1, y= PC2, label = species), 
+                  parse = T, col="gray45", size = 5, segment.size = 0.15) +
+    theme(text = element_text(size = 15),legend.text = element_text(size=rel(0.6)), legend.title = element_blank(), 
+        panel.background = element_rect(colour = "black", size=1)) + 
+  ylim(-1.5, 1.5) + xlim(-1.5, 1.5) 
+
+Plot_PCA
 ```
 
 
-### RDA
+### Link watershed characteristics
 ```{r}
-# PCA of water chemistry 
-water_chem <- water_chem %>% drop_na() %>% 
-  rename("DOC" = "DOC_mg_L", 
-         "POC" = "POC_mg_L", 
-         "NO2_NO3" = "NO2_NO3_umol_L", 
-         "PO4" = "PO4_umol_L", 
-         "SiO2" = "SiO2_umol_L", 
-         "SPM" = "SPM_mg_L", 
-         "dTotHg" = "dTotHg_ng_L", 
-         "pTotHg" = "pTotHg_ng_L")
 
-Envar <- water_chem %>% 
-  select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)) %>% 
+# PCA of water chemistry and watershed characteristics
+
+watershed_chem <- full_join(water_chem2, watershed_info_joined) %>% 
+  dplyr::select(c(glacier:glacier_percent))
+  
+# PCA of water chemistry 
+water_chem2 <- water_chem %>% rename("watershed" = "River") %>% 
+  mutate(watershed = str_replace_all(watershed, "Degeerelva", "DeGeerelva"))
+
+# Dataset for calculating PCA
+Envar <- water_chem2 %>% 
+  dplyr::select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)) %>% 
   mutate_at(vars(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)),~scale(.))
+
+Envar2 <- water_chem2 %>% 
+  dplyr::select(c(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg))
+Envar <- scale(Envar2)
 
 # PCA in Vegan
 water_chem_PCA <- rda(Envar)
 water_chem_PCA
 (3.1505/8)*100
 (2.1688/8)*100
+
 # Plot
 PCAscores <- scores(water_chem_PCA, display = "sites") %>% as.data.frame() 
 PCAvect <- scores(water_chem_PCA, display = "species") %>% as.data.frame() %>% rownames_to_column("species")
 
+# Watershed data
+fit_watershed <- envfit(water_chem_PCA, watershed_chem, perm = 999, na.rm = T) %>% 
+  scores(., display = "vectors") %>% 
+  as.data.frame() %>% 
+  rownames_to_column("species")
 
 #Plot
-P4 <- ggplot() +
-  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = water_chem$month), 
-             size= 3, alpha = 0.7) +
+Plot_PCA <- ggplot() +
+  geom_point(data = PCAscores, aes(x = PC1, y = PC2, color = water_chem2$month, shape = water_chem2$watershed), size= 3, alpha = 0.7) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) + 
   theme_classic() +
   geom_vline(xintercept = c(0), color = "grey70", linetype = 2) + 
-  geom_hline(yintercept = c(0), color = "grey70", linetype = 2)  +
-  labs(x = "PC1 (39 %)", y = "PC2 (27%)") +  
-  geom_segment(data = PCAvect, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
-               arrow = arrow(length = unit(0.1, "cm")), col = "black") +
-  geom_text_repel(data = PCAvect, aes(x = PC1, y= PC2, label = species), parse = T, col="black", size = 3, segment.size = 0.15) +
-  theme(text = element_text(size=),legend.text = element_text(size=rel(0.6)),legend.title = element_blank(), 
-        panel.background = element_rect(colour = "black", size=1)) + ylim(-1.2,1.2) + xlim(-1.5,1.5)
-P4
+  geom_hline(yintercept = c(0), color = "grey70", linetype = 2) +
+  labs(x = "PC1 (39 %)", y = "PC2 (27 %)") + 
+  #stat_ellipse(data = PCAscores, aes(x = PC1, y = PC2, fill = factor(water_chem2$watershed)), 
+             #  geom="polygon", level=0.8, alpha=0.2) +
+  geom_segment(data = fit_watershed, aes(x = 0, xend = PC1, y = 0, yend = PC2), 
+               arrow = arrow(length = unit(0.1, "cm")), col = "gray45") +
+  geom_text_repel(data = fit_watershed, aes(x = PC1, y= PC2, label = species), 
+                  parse = T, col="gray45", size = 3.6, segment.size = 0.15) +   
+  theme(text = element_text(size = 15), legend.text = element_text(size=rel(0.6)), legend.title = element_blank(), 
+        panel.background = element_rect(colour = "black", size=1)) + 
+  ylim(-1.5,1.5) + xlim(-1.5,1.5) 
+
+Plot_PCA
 ```
 
 
-
-::: {.callout-note caption="Seasonality!"}
-
-In Arctic regions, most river runoff is constrained to the summer melt season due to seasonal variations in sunlight and temperature. Despite their importance, for simplification, we do not account for seasonal variability in river discharge and water chemistry in this example.
-
-:::
