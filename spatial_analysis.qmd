@@ -39,7 +39,7 @@ stations <- read_sf("datafiles/spatial_data/sampling_stations.shp")
 
 ## Plotting the data and preparing it for analysis
 
-### PLotting the data 
+### Plotting the data 
 ```{r}
 ## Exploring the data
 # Plot the watershed with baseR functions
@@ -88,7 +88,6 @@ riverline_shed <- st_intersection(riverline_projected, watershed)
 
 
 ## Generating new data layers from existing data
-### Distance to rivers
 ```{r}
 ## For the next operation we are working in the old sf/raster formats so we need to convert them first
 # Change sf file format to sp file format
@@ -297,7 +296,7 @@ ndvi
 ndvi <- ndvi/1000
 ```
 
-### Reclassify the vegetation class
+### Reclassify the vegetation map
 ```{r}
 # We can plot the map to look at it
 plot(veg_map)

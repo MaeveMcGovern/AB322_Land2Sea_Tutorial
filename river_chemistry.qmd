@@ -6,7 +6,6 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 
 ## Load libraries 
-
 ```{r}
 # Packages for data preparation and plotting
 library(tidyverse)
@@ -15,7 +14,6 @@ library(vegan)
 ```
 
 ## Load datafiles
-
 ```{r}
 # Load datafile
 water_chem <- read_csv("datafiles/AB322_Water_Chemistry.csv")
@@ -110,7 +108,6 @@ P3
 
 
 ```{r}
-#| eval: false
 # Hg per gram Carbon
 
 P4 <- water_chem %>%
