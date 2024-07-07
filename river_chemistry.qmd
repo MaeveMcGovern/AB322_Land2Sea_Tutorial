@@ -28,8 +28,8 @@ Shortcut for the pipe (%>%): shift-command-m (mac); shift-control-m (windows)
 ```{r}
 
 water_chem <- water_chem %>% 
-  mutate(Date = dmy(Date)) %>%
-  mutate(year = year(Date),month = month(Date, label = TRUE), day = day(Date)) %>% 
+  mutate(date = dmy(date)) %>%
+  mutate(year = year(date),month = month(date, label = TRUE), day = day(date)) %>% 
   rename("DOC" = "DOC_mg_L", 
          "POC" = "POC_mg_L", 
          "NO2_NO3" = "NO2_NO3_umol_L", 
@@ -49,12 +49,12 @@ water_chem$month <- factor(water_chem$month, levels = c("May", "Jun", "Aug", "Se
 ```{r}
 # TOC, DOC, POC
 P1 <- water_chem %>% 
-  dplyr::select(River, month, DOC, POC) %>% 
-  pivot_longer(cols= -c(River, month), names_to = "Carbon", values_to= 'Concentration') %>% 
+  dplyr::select(watershed, month, DOC, POC) %>% 
+  pivot_longer(cols= -c(watershed, month), names_to = "Carbon", values_to= 'Concentration') %>% 
   ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes = 0.8) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
-  facet_grid(Carbon~River, scales= "free") +
+  facet_grid(Carbon~watershed, scales= "free") +
   ylab("Organic carbon (mg C/L)") + 
   theme_light() +
   scale_y_log10() + xlab(NULL) +
@@ -68,12 +68,12 @@ P1
 # NO3_NO2, SiO2, PO4
 
 P2 <- water_chem %>% 
-  dplyr::select(River, month, NO2_NO3, SiO2, PO4) %>% drop_na() %>% 
-  pivot_longer(cols= -c(River, month), names_to = "Nutrient", values_to= 'Concentration') %>% 
+  dplyr::select(watershed, month, NO2_NO3, SiO2, PO4) %>% drop_na() %>% 
+  pivot_longer(cols= -c(watershed, month), names_to = "Nutrient", values_to= 'Concentration') %>% 
   ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes= 0.8) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
-  facet_grid(Nutrient ~ River, scales = "free") +
+  facet_grid(Nutrient ~ watershed, scales = "free") +
   ylab("Concentration (umol/L)") + 
   theme_light() +
   scale_y_log10() + xlab(NULL) +
@@ -88,14 +88,14 @@ P2
 # Hg (Particulate and dissolved)
 
 P3 <- water_chem %>% 
-  dplyr::select(River, month, dTotHg, pTotHg) %>% drop_na() %>% 
-  pivot_longer(cols= -c(River, month), names_to = "Mercury", values_to= 'Concentration') %>% 
+  dplyr::select(watershed, month, dTotHg, pTotHg) %>% drop_na() %>% 
+  pivot_longer(cols= -c(watershed, month), names_to = "Mercury", values_to= 'Concentration') %>% 
   ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes = 0.8) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
-  facet_grid(Mercury ~ River, scales = "free") +
+  facet_grid(Mercury ~ watershed, scales = "free") +
   ylab("Concentration (ng/L)") + 
-  xlab("River") +
+  xlab("watershed") +
   theme_light() +
   scale_y_log10() + xlab(NULL) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), 
@@ -113,14 +113,14 @@ P3
 P4 <- water_chem %>%
   mutate(dTotHg_gC = dTotHg/DOC) %>% 
   mutate(pTotHg_gC = pTotHg/POC) %>%
-  dplyr::select(River, month, dTotHg_gC, pTotHg_gC) %>% drop_na() %>% 
-  pivot_longer(cols= -c(River, month), names_to = "Mercury", values_to= 'Concentration') %>% 
+  dplyr::select(watershed, month, dTotHg_gC, pTotHg_gC) %>% drop_na() %>% 
+  pivot_longer(cols= -c(watershed, month), names_to = "Mercury", values_to= 'Concentration') %>% 
   ggplot(aes(x = month, y = Concentration, color = month)) + 
   geom_point(size = 2, aes = 0.8) +
   scale_color_manual(values=c("cadetblue3", "cadetblue4", "darksalmon",  "plum4")) +
-  facet_grid(Mercury ~ River, scales = "free") +
+  facet_grid(Mercury ~ watershed, scales = "free") +
   ylab("Concentration (ng/gC)") + 
-  xlab("River") +
+  xlab("watershed") +
   theme_light() +
   scale_y_log10() + xlab(NULL) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), text = element_text(size=15))

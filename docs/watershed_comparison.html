@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-0.9.468">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>AB322 Land-2-Sea Tutorial - 3&nbsp; Watershed Comparison</title>
 <style>
 code{white-space: pre-wrap;}
@@ -79,7 +76,6 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -99,28 +95,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="./"><link href="/references.html" rel="next"><link href="/spatial_analysis.html" rel="prev"><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet"><link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet"><link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet"></head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Watershed Comparison</span></h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Watershed Comparison</span>
+</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">AB322 Land-2-Sea Tutorial</a> 
     </div>
@@ -132,7 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -168,41 +157,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exploring-the-watershed-dataframe" id="toc-exploring-the-watershed-dataframe" class="nav-link active" data-scroll-target="#exploring-the-watershed-dataframe"> <span class="header-section-number">3.1</span> Exploring the watershed dataframe</a>
+<li>
+<a href="#exploring-the-watershed-dataframe" id="toc-exploring-the-watershed-dataframe" class="nav-link active" data-scroll-target="#exploring-the-watershed-dataframe"> <span class="header-section-number">3.1</span> Exploring the watershed dataframe</a>
   <ul class="collapse">
-  <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"> <span class="header-section-number">3.1.1</span> Preparing the data</a></li>
-  <li><a href="#plotting-the-data-in-ggplot2" id="toc-plotting-the-data-in-ggplot2" class="nav-link" data-scroll-target="#plotting-the-data-in-ggplot2"> <span class="header-section-number">3.1.2</span> Plotting the data in GGPLOT2</a></li>
-  </ul></li>
-  <li><a href="#summarizing-the-watersheds-dataframe" id="toc-summarizing-the-watersheds-dataframe" class="nav-link" data-scroll-target="#summarizing-the-watersheds-dataframe"> <span class="header-section-number">3.2</span> Summarizing the watersheds dataframe</a>
+<li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"> <span class="header-section-number">3.1.1</span> Preparing the data</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#summarizing-the-watersheds-dataframe" id="toc-summarizing-the-watersheds-dataframe" class="nav-link" data-scroll-target="#summarizing-the-watersheds-dataframe"> <span class="header-section-number">3.2</span> Summarizing the watersheds dataframe</a>
   <ul class="collapse">
-  <li><a href="#summarizing-the-continious-variables" id="toc-summarizing-the-continious-variables" class="nav-link" data-scroll-target="#summarizing-the-continious-variables"> <span class="header-section-number">3.2.1</span> Summarizing the continious variables</a></li>
+<li><a href="#summarizing-the-continious-variables" id="toc-summarizing-the-continious-variables" class="nav-link" data-scroll-target="#summarizing-the-continious-variables"> <span class="header-section-number">3.2.1</span> Summarizing the continious variables</a></li>
   <li><a href="#summarizing-the-ground-cover-classes" id="toc-summarizing-the-ground-cover-classes" class="nav-link" data-scroll-target="#summarizing-the-ground-cover-classes"> <span class="header-section-number">3.2.2</span> Summarizing the ground cover classes</a></li>
   <li><a href="#exploring-the-ground-cover-classes" id="toc-exploring-the-ground-cover-classes" class="nav-link" data-scroll-target="#exploring-the-ground-cover-classes"> <span class="header-section-number">3.2.3</span> Exploring the ground cover classes</a></li>
   <li><a href="#calculate-the-percentage-bare-ground-within-50m-of-the-river" id="toc-calculate-the-percentage-bare-ground-within-50m-of-the-river" class="nav-link" data-scroll-target="#calculate-the-percentage-bare-ground-within-50m-of-the-river"> <span class="header-section-number">3.2.4</span> Calculate the percentage bare ground within 50m of the river</a></li>
   <li><a href="#join-tables-and-export" id="toc-join-tables-and-export" class="nav-link" data-scroll-target="#join-tables-and-export"> <span class="header-section-number">3.2.5</span> Join tables and export</a></li>
-  </ul></li>
-  <li><a href="#relationships-to-river-water-chemistry" id="toc-relationships-to-river-water-chemistry" class="nav-link" data-scroll-target="#relationships-to-river-water-chemistry"> <span class="header-section-number">3.3</span> Relationships to river water chemistry</a>
-  <ul class="collapse">
-  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"> <span class="header-section-number">3.3.1</span> PCA</a></li>
-  <li><a href="#link-watershed-characteristics" id="toc-link-watershed-characteristics" class="nav-link" data-scroll-target="#link-watershed-characteristics"> <span class="header-section-number">3.3.2</span> Link watershed characteristics</a></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#relationships-to-river-water-chemistry" id="toc-relationships-to-river-water-chemistry" class="nav-link" data-scroll-target="#relationships-to-river-water-chemistry"> <span class="header-section-number">3.3</span> Relationships to river water chemistry</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Watershed Comparison</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Watershed Comparison</span>
+</h1>
 </div>
 
 
@@ -214,332 +197,194 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<div class="cell">
+</header><div class="cell">
 
 </div>
-<section id="exploring-the-watershed-dataframe" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="exploring-the-watershed-dataframe"><span class="header-section-number">3.1</span> Exploring the watershed dataframe</h2>
-<section id="preparing-the-data" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="preparing-the-data"><span class="header-section-number">3.1.1</span> Preparing the data</h3>
+<section id="exploring-the-watershed-dataframe" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="exploring-the-watershed-dataframe">
+<span class="header-section-number">3.1</span> Exploring the watershed dataframe</h2>
+<section id="preparing-the-data" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="preparing-the-data">
+<span class="header-section-number">3.1.1</span> Preparing the data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplots</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the watershed files</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>watershed_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datafiles/spatial_data/watershed_dataframe.csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>watershed_info <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datafiles/spatial_data/watershed_info.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># We add a column to watershed_df because it makes summaries easier</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>watershed_df<span class="sc">$</span>count<span class="ot">&lt;-</span><span class="dv">1</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#If your computer is slow, you can randomly subset the data</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>watershed_df_sub<span class="ot">&lt;-</span><span class="fu">sample_n</span>(watershed_df, <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ggplots</span></span>
+<span></span>
+<span><span class="co"># Load the watershed files</span></span>
+<span><span class="va">watershed_df</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"datafiles/spatial_data/watershed_dataframe.csv"</span><span class="op">)</span></span>
+<span><span class="va">watershed_info</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"datafiles/spatial_data/watershed_info.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># We add a column to watershed_df because it makes summaries easier</span></span>
+<span><span class="va">watershed_df</span><span class="op">$</span><span class="va">count</span><span class="op">&lt;-</span><span class="fl">1</span></span>
+<span></span>
+<span><span class="co"># If your computer is slow, you can randomly subset the data</span></span>
+<span><span class="va">watershed_df_sub</span><span class="op">&lt;-</span><span class="fu">sample_n</span><span class="op">(</span><span class="va">watershed_df</span>, <span class="fl">10000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="plotting-the-data-in-ggplot2" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="plotting-the-data-in-ggplot2"><span class="header-section-number">3.1.2</span> Plotting the data in GGPLOT2</h3>
+</section></section><section id="summarizing-the-watersheds-dataframe" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="summarizing-the-watersheds-dataframe">
+<span class="header-section-number">3.2</span> Summarizing the watersheds dataframe</h2>
+<section id="summarizing-the-continious-variables" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="summarizing-the-continious-variables">
+<span class="header-section-number">3.2.1</span> Summarizing the continious variables</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> watershed_df_sub, <span class="fu">aes</span>(<span class="at">x=</span>watershed, <span class="at">y =</span> elevation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the mean ndvi, elevation and slope for each catchment</span></span>
+<span><span class="va">watershed_mean</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">watershed</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ndvi"</span>, <span class="st">"slope"</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate the mean ndvi, elevation and slope for each catchment within 1km</span></span>
+<span><span class="va">watershed_mean</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">watershed</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>ndvi_1km<span class="op">=</span><span class="st">"ndvi"</span>, slope_1km<span class="op">=</span><span class="st">"slope"</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_mean</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate the mean ndvi, elevation and slope for each catchment within 5km</span></span>
+<span><span class="va">watershed_mean</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;</span> <span class="fl">5000</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">watershed</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>ndvi_5km<span class="op">=</span><span class="st">"ndvi"</span>, slope_5km<span class="op">=</span><span class="st">"slope"</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_mean</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="summarizing-the-ground-cover-classes" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="summarizing-the-ground-cover-classes">
+<span class="header-section-number">3.2.2</span> Summarizing the ground cover classes</h3>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Count each ground cover class for each watershed and pivot the table</span></span>
+<span><span class="va">watershed_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">watershed</span>, <span class="va">vegetation</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"count"</span><span class="op">)</span>, <span class="va">sum</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">'vegetation'</span>,</span>
+<span>              values_from <span class="op">=</span> <span class="st">'count'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate the percentages per vegetation class and watershed</span></span>
+<span><span class="va">watershed_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_class_proportion</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu">c_across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">/</span> <span class="va">total</span><span class="op">*</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Drop the columns that we don't need</span></span>
+<span><span class="va">watershed_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_class_proportion</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">shadow</span>, <span class="op">-</span><span class="va">water</span>, <span class="op">-</span><span class="va">total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="exploring-the-ground-cover-classes" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="exploring-the-ground-cover-classes">
+<span class="header-section-number">3.2.3</span> Exploring the ground cover classes</h3>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Change to long format for ground cover classes to be factors</span></span>
+<span><span class="va">watershed_class_proportion_pivot</span><span class="op">&lt;-</span><span class="fu">pivot_longer</span><span class="op">(</span><span class="va">watershed_class_proportion</span>,</span>
+<span>            cols <span class="op">=</span> <span class="op">-</span><span class="va">watershed</span>,</span>
+<span>            names_to <span class="op">=</span> <span class="st">'class'</span>,</span>
+<span>            values_to <span class="op">=</span> <span class="st">'percentage'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot the data with GGPLOT</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">watershed_class_proportion_pivot</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">watershed</span>, y <span class="op">=</span> <span class="va">percentage</span>, fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> watershed_df_sub, <span class="fu">aes</span>(<span class="at">x=</span>watershed, <span class="at">y =</span> ndvi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Change the axis and from stacked to parallel</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">watershed_class_proportion_pivot</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">class</span>, y <span class="op">=</span> <span class="va">percentage</span>, fill <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span>, color<span class="op">=</span><span class="st">"black"</span>, position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> watershed_df_sub, <span class="fu">aes</span>(<span class="at">x=</span>watershed, <span class="at">y =</span> ndvi, <span class="at">color=</span>vegetation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="calculate-the-percentage-bare-ground-within-50m-of-the-river" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="calculate-the-percentage-bare-ground-within-50m-of-the-river">
+<span class="header-section-number">3.2.4</span> Calculate the percentage bare ground within 50m of the river</h3>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sum the vegetation classes per watershed</span></span>
+<span><span class="va">buffer50_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">watershed</span>, <span class="va">vegetation</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"count"</span><span class="op">)</span>, <span class="va">sum</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">'vegetation'</span>,</span>
+<span>              values_from <span class="op">=</span> <span class="st">'count'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate the percentages per vegetation class and watershed</span></span>
+<span><span class="va">buffer50_class_proportion</span> <span class="op">&lt;-</span> <span class="va">buffer50_class_proportion</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu">c_across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">/</span> <span class="va">total</span><span class="op">*</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Drop the columns that we don't need and join with existing dataset</span></span>
+<span><span class="va">buffer50_bareground</span> <span class="op">&lt;-</span> <span class="va">buffer50_class_proportion</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">watershed</span>, barren50meter<span class="op">=</span><span class="va">barren</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_class_proportion</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="join-tables-and-export" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="join-tables-and-export">
+<span class="header-section-number">3.2.5</span> Join tables and export</h3>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Use join to join the continious and categorical data into 1</span></span>
+<span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_class_proportion</span>, <span class="va">watershed_mean</span><span class="op">)</span></span>
+<span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="va">buffer50_bareground</span><span class="op">)</span></span>
+<span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="va">watershed_info</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">write_csv</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="relationships-to-river-water-chemistry" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="relationships-to-river-water-chemistry">
+<span class="header-section-number">3.3</span> Relationships to river water chemistry</h2>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load water chem dataframe</span></span>
+<span><span class="va">water_chem</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"datafiles/AB322_Water_Chemistry.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>year <span class="op">=</span> <span class="fu">year</span><span class="op">(</span><span class="va">date</span><span class="op">)</span>, month <span class="op">=</span> <span class="fu">month</span><span class="op">(</span><span class="va">date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, day <span class="op">=</span> <span class="fu">day</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">rename</span><span class="op">(</span><span class="st">"DOC"</span> <span class="op">=</span> <span class="st">"DOC_mg_L"</span>, </span>
+<span>         <span class="st">"POC"</span> <span class="op">=</span> <span class="st">"POC_mg_L"</span>, </span>
+<span>         <span class="st">"NO2_NO3"</span> <span class="op">=</span> <span class="st">"NO2_NO3_umol_L"</span>, </span>
+<span>         <span class="st">"PO4"</span> <span class="op">=</span> <span class="st">"PO4_umol_L"</span>, </span>
+<span>         <span class="st">"SiO2"</span> <span class="op">=</span> <span class="st">"SiO2_umol_L"</span>, </span>
+<span>         <span class="st">"SPM"</span> <span class="op">=</span> <span class="st">"SPM_mg_L"</span>, </span>
+<span>         <span class="st">"dTotHg"</span> <span class="op">=</span> <span class="st">"dTotHg_ng_L"</span>, </span>
+<span>         <span class="st">"pTotHg"</span> <span class="op">=</span> <span class="st">"pTotHg_ng_L"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Join</span></span>
+<span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span><span class="op">)</span> </span>
+<span><span class="va">catchment_chemistry</span> <span class="op">&lt;-</span> <span class="fu">full_join</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="va">water_chem</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Corrplot for overview of all relationships</span></span>
+<span></span>
+<span><span class="va">catchment_chemistry2</span> <span class="op">&lt;-</span> <span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">watershed</span>, <span class="va">date</span>, <span class="va">sample_id</span>, <span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">`NA`</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">catchment_chemistry3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">catchment_chemistry2</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spearman"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">corrplot</span><span class="op">(</span><span class="va">catchment_chemistry3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> watershed_df_sub, <span class="fu">aes</span>(<span class="at">x=</span>vegetation, <span class="at">y =</span> ndvi, <span class="at">color=</span>watershed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">corrplot</span><span class="op">(</span><span class="va">catchment_chemistry3</span>, method <span class="op">=</span> <span class="st">'square'</span>, order <span class="op">=</span> <span class="st">'FPC'</span>, type <span class="op">=</span> <span class="st">'lower'</span>, diag <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> watershed_df_sub, <span class="fu">aes</span>(<span class="at">x=</span>vegetation, <span class="at">y =</span> ndvi, <span class="at">fill=</span>watershed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> watershed_df_sub, <span class="fu">aes</span>(<span class="at">x=</span>vegetation, <span class="at">y =</span> ndvi, <span class="at">fill=</span>watershed))<span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">size=</span>.<span class="dv">5</span>, <span class="at">linetype=</span><span class="st">"solid"</span>))<span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>), <span class="at">legend.position=</span><span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="summarizing-the-watersheds-dataframe" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="summarizing-the-watersheds-dataframe"><span class="header-section-number">3.2</span> Summarizing the watersheds dataframe</h2>
-<section id="summarizing-the-continious-variables" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="summarizing-the-continious-variables"><span class="header-section-number">3.2.1</span> Summarizing the continious variables</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the mean ndvi, elevation and slope for each catchment</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>watershed_mean<span class="ot">&lt;-</span>watershed_df <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(watershed) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="st">"ndvi"</span>, <span class="st">"elevation"</span>, <span class="st">"slope"</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the mean ndvi, elevation and slope for each catchment within 1km</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>watershed_mean<span class="ot">&lt;-</span>watershed_df <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(station_distance <span class="sc">&lt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(watershed) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="at">ndvi_1km=</span><span class="st">"ndvi"</span>, <span class="at">elevation_1km=</span><span class="st">"elevation"</span>, <span class="at">slope_1km=</span><span class="st">"slope"</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(watershed_mean)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the mean ndvi, elevation and slope for each catchment within 5km</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>watershed_mean<span class="ot">&lt;-</span>watershed_df <span class="sc">%&gt;%</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(station_distance <span class="sc">&lt;</span> <span class="dv">5000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(watershed) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="at">ndvi_5km=</span><span class="st">"ndvi"</span>, <span class="at">elevation_5km=</span><span class="st">"elevation"</span>, <span class="at">slope_5km=</span><span class="st">"slope"</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(watershed_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="summarizing-the-ground-cover-classes" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="summarizing-the-ground-cover-classes"><span class="header-section-number">3.2.2</span> Summarizing the ground cover classes</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Count each ground cover class for each watershed and pivot the table</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>watershed_class_proportion<span class="ot">&lt;-</span>watershed_df <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(watershed, vegetation) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="st">"count"</span>), sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> <span class="st">'vegetation'</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> <span class="st">'count'</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the percentages per vegetation class and watershed</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>watershed_class_proportion<span class="ot">&lt;-</span>watershed_class_proportion <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(<span class="fu">c_across</span>(<span class="fu">where</span>(is.numeric)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> . <span class="sc">/</span> total<span class="sc">*</span><span class="dv">100</span>))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Drop the columns that we don't need</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>watershed_class_proportion<span class="ot">&lt;-</span>watershed_class_proportion <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>shadow, <span class="sc">-</span>marine, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="exploring-the-ground-cover-classes" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="exploring-the-ground-cover-classes"><span class="header-section-number">3.2.3</span> Exploring the ground cover classes</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Change to long format for ground cover classes to be factors</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>watershed_class_proportion_pivot<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(watershed_class_proportion,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">cols =</span> <span class="sc">-</span>watershed,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_to =</span> <span class="st">'class'</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_to =</span> <span class="st">'percentage'</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the data with GGPLOT</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> watershed_class_proportion_pivot, <span class="fu">aes</span>(<span class="at">x =</span> watershed, <span class="at">y =</span> percentage, <span class="at">fill =</span> class)) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Change the axis and from stacked to parallel</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> watershed_class_proportion_pivot, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> percentage, <span class="at">fill =</span> watershed)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="calculate-the-percentage-bare-ground-within-50m-of-the-river" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="calculate-the-percentage-bare-ground-within-50m-of-the-river"><span class="header-section-number">3.2.4</span> Calculate the percentage bare ground within 50m of the river</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sum the vegetation classes per watershed</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>buffer50_class_proportion <span class="ot">&lt;-</span> watershed_df <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(river_buffer50 <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(watershed, vegetation) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="st">"count"</span>), sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">'vegetation'</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">'count'</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the percentages per vegetation class and watershed</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>buffer50_class_proportion <span class="ot">&lt;-</span> buffer50_class_proportion <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">sum</span>(<span class="fu">c_across</span>(<span class="fu">where</span>(is.numeric)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> . <span class="sc">/</span> total<span class="sc">*</span><span class="dv">100</span>))</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Drop the columns that we don't need and join with existing dataset</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>buffer50_bareground<span class="ot">&lt;-</span>buffer50_class_proportion <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(watershed, <span class="at">barren50meter=</span>barren) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(watershed_class_proportion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="join-tables-and-export" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="join-tables-and-export"><span class="header-section-number">3.2.5</span> Join tables and export</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use join to join the continious and categorical data into 1</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>watershed_info_joined <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(watershed_class_proportion, watershed_mean)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>watershed_info_joined <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(watershed_info_joined, buffer50_bareground)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>watershed_info_joined <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(watershed_info_joined, watershed_info)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(watershed_info_joined, <span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="relationships-to-river-water-chemistry" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="relationships-to-river-water-chemistry"><span class="header-section-number">3.3</span> Relationships to river water chemistry</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>watershed_info_joined <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="pca" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="pca"><span class="header-section-number">3.3.1</span> PCA</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA of water chemistry </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>water_chem2 <span class="ot">&lt;-</span> water_chem <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"watershed"</span> <span class="ot">=</span> <span class="st">"River"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">watershed =</span> <span class="fu">str_replace_all</span>(watershed, <span class="st">"Degeerelva"</span>, <span class="st">"DeGeerelva"</span>))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset for calculating PCA</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>Envar <span class="ot">&lt;-</span> water_chem2 <span class="sc">%&gt;%</span> </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">c</span>(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)),<span class="sc">~</span><span class="fu">scale</span>(.))</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>Envar2 <span class="ot">&lt;-</span> water_chem2 <span class="sc">%&gt;%</span> </span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>Envar <span class="ot">&lt;-</span> <span class="fu">scale</span>(Envar2)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA in Vegan</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>water_chem_PCA <span class="ot">&lt;-</span> <span class="fu">rda</span>(Envar)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>water_chem_PCA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: rda(X = Envar)
-
-              Inertia Rank
-Total               8     
-Unconstrained       8    8
-Inertia is variance 
-
-Eigenvalues for unconstrained axes:
-   PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8 
-3.1505 2.1688 1.1928 0.5890 0.4575 0.2103 0.1660 0.0651 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">3.1505</span><span class="sc">/</span><span class="dv">8</span>)<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 39.38125</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">2.1688</span><span class="sc">/</span><span class="dv">8</span>)<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 27.11</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>PCAscores <span class="ot">&lt;-</span> <span class="fu">scores</span>(water_chem_PCA, <span class="at">display =</span> <span class="st">"sites"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>PCAvect <span class="ot">&lt;-</span> <span class="fu">scores</span>(water_chem_PCA, <span class="at">display =</span> <span class="st">"species"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">rownames_to_column</span>(<span class="st">"species"</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>fit_envar <span class="ot">&lt;-</span> <span class="fu">envfit</span>(water_chem_PCA, Envar2, <span class="at">perm =</span> <span class="dv">999</span>, <span class="at">na.rm =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scores</span>(., <span class="at">display =</span> <span class="st">"vectors"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"species"</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>Plot_PCA <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> PCAscores, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> water_chem2<span class="sc">$</span>month, <span class="at">shape =</span> water_chem2<span class="sc">$</span>watershed), <span class="at">size=</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"cadetblue3"</span>, <span class="st">"cadetblue4"</span>, <span class="st">"darksalmon"</span>,  <span class="st">"plum4"</span>)) <span class="sc">+</span> </span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>), <span class="at">color =</span> <span class="st">"grey70"</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>), <span class="at">color =</span> <span class="st">"grey70"</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"PC1 (39 %)"</span>, <span class="at">y =</span> <span class="st">"PC2 (27 %)"</span>) <span class="sc">+</span> </span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#stat_ellipse(data = PCAscores, aes(x = PC1, y = PC2, fill = factor(water_chem2$watershed)), </span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>             <span class="co">#  geom="polygon", level=0.8, alpha=0.2) +</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> fit_envar, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> PC1, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> PC2), </span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"cm"</span>)), <span class="at">col =</span> <span class="st">"gray45"</span>) <span class="sc">+</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> fit_envar, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y=</span> PC2, <span class="at">label =</span> species), </span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>                  <span class="at">parse =</span> T, <span class="at">col=</span><span class="st">"gray45"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">segment.size =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="fu">rel</span>(<span class="fl">0.6</span>)), <span class="at">legend.title =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>) </span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>Plot_PCA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Further exploration</span></span>
+<span></span>
+<span> <span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">slope</span>, y <span class="op">=</span> <span class="va">DOC</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
-</div>
-</section>
-<section id="link-watershed-characteristics" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="link-watershed-characteristics"><span class="header-section-number">3.3.2</span> Link watershed characteristics</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA of water chemistry and watershed characteristics</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>watershed_chem <span class="ot">&lt;-</span> <span class="fu">full_join</span>(water_chem2, watershed_info_joined) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(glacier<span class="sc">:</span>glacier_percent))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA of water chemistry </span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>water_chem2 <span class="ot">&lt;-</span> water_chem <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"watershed"</span> <span class="ot">=</span> <span class="st">"River"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">watershed =</span> <span class="fu">str_replace_all</span>(watershed, <span class="st">"Degeerelva"</span>, <span class="st">"DeGeerelva"</span>))</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset for calculating PCA</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>Envar <span class="ot">&lt;-</span> water_chem2 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">c</span>(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg)),<span class="sc">~</span><span class="fu">scale</span>(.))</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>Envar2 <span class="ot">&lt;-</span> water_chem2 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(DOC, POC, NO2_NO3, PO4, SiO2, SPM, dTotHg, pTotHg))</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>Envar <span class="ot">&lt;-</span> <span class="fu">scale</span>(Envar2)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA in Vegan</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>water_chem_PCA <span class="ot">&lt;-</span> <span class="fu">rda</span>(Envar)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>water_chem_PCA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Call: rda(X = Envar)
-
-              Inertia Rank
-Total               8     
-Unconstrained       8    8
-Inertia is variance 
-
-Eigenvalues for unconstrained axes:
-   PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8 
-3.1505 2.1688 1.1928 0.5890 0.4575 0.2103 0.1660 0.0651 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">3.1505</span><span class="sc">/</span><span class="dv">8</span>)<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 39.38125</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">2.1688</span><span class="sc">/</span><span class="dv">8</span>)<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 27.11</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>PCAscores <span class="ot">&lt;-</span> <span class="fu">scores</span>(water_chem_PCA, <span class="at">display =</span> <span class="st">"sites"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>PCAvect <span class="ot">&lt;-</span> <span class="fu">scores</span>(water_chem_PCA, <span class="at">display =</span> <span class="st">"species"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">rownames_to_column</span>(<span class="st">"species"</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Watershed data</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>fit_watershed <span class="ot">&lt;-</span> <span class="fu">envfit</span>(water_chem_PCA, watershed_chem, <span class="at">perm =</span> <span class="dv">999</span>, <span class="at">na.rm =</span> T) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scores</span>(., <span class="at">display =</span> <span class="st">"vectors"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"species"</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>Plot_PCA <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> PCAscores, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">color =</span> water_chem2<span class="sc">$</span>month, <span class="at">shape =</span> water_chem2<span class="sc">$</span>watershed), <span class="at">size=</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"cadetblue3"</span>, <span class="st">"cadetblue4"</span>, <span class="st">"darksalmon"</span>,  <span class="st">"plum4"</span>)) <span class="sc">+</span> </span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>), <span class="at">color =</span> <span class="st">"grey70"</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>), <span class="at">color =</span> <span class="st">"grey70"</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"PC1 (39 %)"</span>, <span class="at">y =</span> <span class="st">"PC2 (27 %)"</span>) <span class="sc">+</span> </span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#stat_ellipse(data = PCAscores, aes(x = PC1, y = PC2, fill = factor(water_chem2$watershed)), </span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>             <span class="co">#  geom="polygon", level=0.8, alpha=0.2) +</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> fit_watershed, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> PC1, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> PC2), </span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"cm"</span>)), <span class="at">col =</span> <span class="st">"gray45"</span>) <span class="sc">+</span></span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> fit_watershed, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y=</span> PC2, <span class="at">label =</span> species), </span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>                  <span class="at">parse =</span> T, <span class="at">col=</span><span class="st">"gray45"</span>, <span class="at">size =</span> <span class="fl">3.6</span>, <span class="at">segment.size =</span> <span class="fl">0.15</span>) <span class="sc">+</span>   </span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="fu">rel</span>(<span class="fl">0.6</span>)), <span class="at">legend.title =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>) </span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>Plot_PCA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">slope_5km</span>, y <span class="op">=</span> <span class="va">SPM</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">ndvi</span>, y <span class="op">=</span> <span class="va">NO2_NO3</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">glacier</span>, y <span class="op">=</span> <span class="va">SiO2</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -617,9 +462,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./spatial_analysis.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spatial Analysis</span></span>
       </a>          

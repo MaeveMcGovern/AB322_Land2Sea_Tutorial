@@ -9,5 +9,5 @@ In this tutorial, we will explore two cross-boundary fluxes of carbon, nutrients
 
 
 ::: {.callout-note appearance="simple"}
-Water chemistry data used in this tutorial include published data [@mcgovern2020terrestrial] and generated data for teaching purposes. This tutorial was created using [Quarto](https://quarto.org).
+Water chemistry data used in this tutorial include published data [@mcgovern2020terrestrial] and generated data for teaching purposes.
 :::

@@ -29,8 +29,18 @@ install.packages(“vegan”)
 install.packages(“sf”)
 install.packages(“terra”)
 install.packages(“units”)
-install.packages(“raster”)
-install.packages(“rgeos”)
 install.packages(“tmap”)	
+install.packages(“corrplot”)	
 ```
 
+``` r
+# Check that the libraries have been properly installed
+library(tidyverse)
+library(lubridate)
+library(vegan)
+library(sf)
+library(terra)
+library(units)
+library(tmap)	
+library(corrplot)
+```
