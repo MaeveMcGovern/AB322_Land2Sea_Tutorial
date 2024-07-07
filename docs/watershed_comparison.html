@@ -166,19 +166,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="#exploring-the-watershed-dataframe" id="toc-exploring-the-watershed-dataframe" class="nav-link active" data-scroll-target="#exploring-the-watershed-dataframe"> <span class="header-section-number">3.1</span> Exploring the watershed dataframe</a>
   <ul class="collapse">
 <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data"> <span class="header-section-number">3.1.1</span> Preparing the data</a></li>
+  <li><a href="#summarizing-the-continious-variables" id="toc-summarizing-the-continious-variables" class="nav-link" data-scroll-target="#summarizing-the-continious-variables"> <span class="header-section-number">3.1.2</span> Summarizing the continious variables</a></li>
+  <li><a href="#summarizing-the-ground-cover-classes" id="toc-summarizing-the-ground-cover-classes" class="nav-link" data-scroll-target="#summarizing-the-ground-cover-classes"> <span class="header-section-number">3.1.3</span> Summarizing the ground cover classes</a></li>
+  <li><a href="#exploring-the-ground-cover-classes" id="toc-exploring-the-ground-cover-classes" class="nav-link" data-scroll-target="#exploring-the-ground-cover-classes"> <span class="header-section-number">3.1.4</span> Exploring the ground cover classes</a></li>
+  <li><a href="#join-tables-and-export" id="toc-join-tables-and-export" class="nav-link" data-scroll-target="#join-tables-and-export"> <span class="header-section-number">3.1.5</span> Join tables and export</a></li>
   </ul>
 </li>
   <li>
-<a href="#summarizing-the-watersheds-dataframe" id="toc-summarizing-the-watersheds-dataframe" class="nav-link" data-scroll-target="#summarizing-the-watersheds-dataframe"> <span class="header-section-number">3.2</span> Summarizing the watersheds dataframe</a>
+<a href="#relationships-to-river-water-chemistry" id="toc-relationships-to-river-water-chemistry" class="nav-link" data-scroll-target="#relationships-to-river-water-chemistry"> <span class="header-section-number">3.2</span> Relationships to river water chemistry</a>
   <ul class="collapse">
-<li><a href="#summarizing-the-continious-variables" id="toc-summarizing-the-continious-variables" class="nav-link" data-scroll-target="#summarizing-the-continious-variables"> <span class="header-section-number">3.2.1</span> Summarizing the continious variables</a></li>
-  <li><a href="#summarizing-the-ground-cover-classes" id="toc-summarizing-the-ground-cover-classes" class="nav-link" data-scroll-target="#summarizing-the-ground-cover-classes"> <span class="header-section-number">3.2.2</span> Summarizing the ground cover classes</a></li>
-  <li><a href="#exploring-the-ground-cover-classes" id="toc-exploring-the-ground-cover-classes" class="nav-link" data-scroll-target="#exploring-the-ground-cover-classes"> <span class="header-section-number">3.2.3</span> Exploring the ground cover classes</a></li>
-  <li><a href="#calculate-the-percentage-bare-ground-within-50m-of-the-river" id="toc-calculate-the-percentage-bare-ground-within-50m-of-the-river" class="nav-link" data-scroll-target="#calculate-the-percentage-bare-ground-within-50m-of-the-river"> <span class="header-section-number">3.2.4</span> Calculate the percentage bare ground within 50m of the river</a></li>
-  <li><a href="#join-tables-and-export" id="toc-join-tables-and-export" class="nav-link" data-scroll-target="#join-tables-and-export"> <span class="header-section-number">3.2.5</span> Join tables and export</a></li>
+<li><a href="#correlation-plots" id="toc-correlation-plots" class="nav-link" data-scroll-target="#correlation-plots"> <span class="header-section-number">3.2.1</span> Correlation plots</a></li>
+  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots"> <span class="header-section-number">3.2.2</span> Scatter plots</a></li>
   </ul>
 </li>
-  <li><a href="#relationships-to-river-water-chemistry" id="toc-relationships-to-river-water-chemistry" class="nav-link" data-scroll-target="#relationships-to-river-water-chemistry"> <span class="header-section-number">3.3</span> Relationships to river water chemistry</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -217,10 +217,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co"># If your computer is slow, you can randomly subset the data</span></span>
 <span><span class="va">watershed_df_sub</span><span class="op">&lt;-</span><span class="fu">sample_n</span><span class="op">(</span><span class="va">watershed_df</span>, <span class="fl">10000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="summarizing-the-watersheds-dataframe" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="summarizing-the-watersheds-dataframe">
-<span class="header-section-number">3.2</span> Summarizing the watersheds dataframe</h2>
-<section id="summarizing-the-continious-variables" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="summarizing-the-continious-variables">
-<span class="header-section-number">3.2.1</span> Summarizing the continious variables</h3>
+</section><section id="summarizing-the-continious-variables" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="summarizing-the-continious-variables">
+<span class="header-section-number">3.1.2</span> Summarizing the continious variables</h3>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the mean ndvi, elevation and slope for each catchment</span></span>
 <span><span class="va">watershed_mean</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
@@ -241,8 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>ndvi_5km<span class="op">=</span><span class="st">"ndvi"</span>, slope_5km<span class="op">=</span><span class="st">"slope"</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_mean</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="summarizing-the-ground-cover-classes" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="summarizing-the-ground-cover-classes">
-<span class="header-section-number">3.2.2</span> Summarizing the ground cover classes</h3>
+</section><section id="summarizing-the-ground-cover-classes" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="summarizing-the-ground-cover-classes">
+<span class="header-section-number">3.1.3</span> Summarizing the ground cover classes</h3>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Count each ground cover class for each watershed and pivot the table</span></span>
 <span><span class="va">watershed_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
@@ -261,8 +259,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">watershed_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_class_proportion</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">shadow</span>, <span class="op">-</span><span class="va">water</span>, <span class="op">-</span><span class="va">total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="exploring-the-ground-cover-classes" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="exploring-the-ground-cover-classes">
-<span class="header-section-number">3.2.3</span> Exploring the ground cover classes</h3>
+</section><section id="exploring-the-ground-cover-classes" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="exploring-the-ground-cover-classes">
+<span class="header-section-number">3.1.4</span> Exploring the ground cover classes</h3>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Change to long format for ground cover classes to be factors</span></span>
 <span><span class="va">watershed_class_proportion_pivot</span><span class="op">&lt;-</span><span class="fu">pivot_longer</span><span class="op">(</span><span class="va">watershed_class_proportion</span>,</span>
@@ -283,41 +281,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="watershed_comparison_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="calculate-the-percentage-bare-ground-within-50m-of-the-river" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="calculate-the-percentage-bare-ground-within-50m-of-the-river">
-<span class="header-section-number">3.2.4</span> Calculate the percentage bare ground within 50m of the river</h3>
+</section><section id="join-tables-and-export" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="join-tables-and-export">
+<span class="header-section-number">3.1.5</span> Join tables and export</h3>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sum the vegetation classes per watershed</span></span>
-<span><span class="va">buffer50_class_proportion</span> <span class="op">&lt;-</span> <span class="va">watershed_df</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">watershed</span>, <span class="va">vegetation</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">summarise_at</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"count"</span><span class="op">)</span>, <span class="va">sum</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">'vegetation'</span>,</span>
-<span>              values_from <span class="op">=</span> <span class="st">'count'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Calculate the percentages per vegetation class and watershed</span></span>
-<span><span class="va">buffer50_class_proportion</span> <span class="op">&lt;-</span> <span class="va">buffer50_class_proportion</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu">c_across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.</span> <span class="op">/</span> <span class="va">total</span><span class="op">*</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Drop the columns that we don't need and join with existing dataset</span></span>
-<span><span class="va">buffer50_bareground</span> <span class="op">&lt;-</span> <span class="va">buffer50_class_proportion</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">watershed</span>, barren50meter<span class="op">=</span><span class="va">barren</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_class_proportion</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="join-tables-and-export" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="join-tables-and-export">
-<span class="header-section-number">3.2.5</span> Join tables and export</h3>
-<div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Use join to join the continious and categorical data into 1</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Use join to join the continious and categorical data into 1</span></span>
 <span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_class_proportion</span>, <span class="va">watershed_mean</span><span class="op">)</span></span>
-<span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="va">buffer50_bareground</span><span class="op">)</span></span>
 <span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="va">watershed_info</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">write_csv</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">write_csv</span><span class="op">(</span><span class="va">watershed_info_joined</span>,<span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="relationships-to-river-water-chemistry" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="relationships-to-river-water-chemistry">
-<span class="header-section-number">3.3</span> Relationships to river water chemistry</h2>
+</section></section><section id="relationships-to-river-water-chemistry" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="relationships-to-river-water-chemistry">
+<span class="header-section-number">3.2</span> Relationships to river water chemistry</h2>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load water chem dataframe</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load water chem dataframe</span></span>
 <span><span class="va">water_chem</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"datafiles/AB322_Water_Chemistry.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>year <span class="op">=</span> <span class="fu">year</span><span class="op">(</span><span class="va">date</span><span class="op">)</span>, month <span class="op">=</span> <span class="fu">month</span><span class="op">(</span><span class="va">date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, day <span class="op">=</span> <span class="fu">day</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
@@ -334,8 +310,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">watershed_info_joined</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"datafiles/spatial_data/watershed_info_joined.csv"</span><span class="op">)</span> </span>
 <span><span class="va">catchment_chemistry</span> <span class="op">&lt;-</span> <span class="fu">full_join</span><span class="op">(</span><span class="va">watershed_info_joined</span>, <span class="va">water_chem</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="correlation-plots" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="correlation-plots">
+<span class="header-section-number">3.2.1</span> Correlation plots</h3>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Corrplot for overview of all relationships</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Corrplot for overview of all relationships</span></span>
 <span></span>
 <span><span class="va">catchment_chemistry2</span> <span class="op">&lt;-</span> <span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">watershed</span>, <span class="va">date</span>, <span class="va">sample_id</span>, <span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">`NA`</span><span class="op">)</span><span class="op">)</span> </span>
@@ -343,48 +321,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">catchment_chemistry3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">catchment_chemistry2</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spearman"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">corrplot</span><span class="op">(</span><span class="va">catchment_chemistry3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">corrplot</span><span class="op">(</span><span class="va">catchment_chemistry3</span>, method <span class="op">=</span> <span class="st">'square'</span>, order <span class="op">=</span> <span class="st">'FPC'</span>, type <span class="op">=</span> <span class="st">'lower'</span>, diag <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">corrplot</span><span class="op">(</span><span class="va">catchment_chemistry3</span>, method <span class="op">=</span> <span class="st">'square'</span>, order <span class="op">=</span> <span class="st">'FPC'</span>, type <span class="op">=</span> <span class="st">'lower'</span>, diag <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section><section id="scatter-plots" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="scatter-plots">
+<span class="header-section-number">3.2.2</span> Scatter plots</h3>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Further exploration</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Further exploration</span></span>
 <span></span>
 <span> <span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">slope</span>, y <span class="op">=</span> <span class="va">DOC</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">slope_5km</span>, y <span class="op">=</span> <span class="va">SPM</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">ndvi</span>, y <span class="op">=</span> <span class="va">NO2_NO3</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catchment_chemistry</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">glacier</span>, y <span class="op">=</span> <span class="va">SiO2</span>, color <span class="op">=</span> <span class="va">watershed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">month</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+<p><img src="watershed_comparison_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();

@@ -33,8 +33,6 @@ watershed_df$count<-1
 watershed_df_sub<-sample_n(watershed_df, 10000)
 ```
 
-
-## Summarizing the watersheds dataframe
 ### Summarizing the continious variables
 ```{r}
 # Calculate the mean ndvi, elevation and slope for each catchment
@@ -101,7 +99,6 @@ ggplot(data = watershed_class_proportion_pivot, aes(x = class, y = percentage, f
 ```{r}
 # Use join to join the continious and categorical data into 1
 watershed_info_joined <- inner_join(watershed_class_proportion, watershed_mean)
-watershed_info_joined <- inner_join(watershed_info_joined, buffer50_bareground)
 watershed_info_joined <- inner_join(watershed_info_joined, watershed_info)
 
 write_csv(watershed_info_joined,"datafiles/spatial_data/watershed_info_joined.csv")
@@ -129,6 +126,7 @@ watershed_info_joined <- read_csv("datafiles/spatial_data/watershed_info_joined.
 catchment_chemistry <- full_join(watershed_info_joined, water_chem)
 ```
 
+### Correlation plots
 ```{r}
 # Corrplot for overview of all relationships
 
@@ -141,7 +139,7 @@ corrplot(catchment_chemistry3)
 corrplot(catchment_chemistry3, method = 'square', order = 'FPC', type = 'lower', diag = FALSE)
 ```
 
-
+### Scatter plots
 ```{r}
 # Further exploration
 

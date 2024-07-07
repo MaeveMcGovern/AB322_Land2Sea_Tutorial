@@ -154,7 +154,6 @@ veg_rcl <- classify(veg_map, rclmat, include.lowest=TRUE)
 plot(veg_rcl)
 ```
 
- 
 ## Overlaying the data to export
 ### Preparing the overlay
 
@@ -195,7 +194,6 @@ stack <- c(veg_rcl, ndvi_prj, slope_prj, distance_prj)
 watershed_df <- terra::extract(stack, vect(watershed))
 ```
 
-
 ### Cleaning the dataframe
 
 ```{r}
@@ -215,15 +213,10 @@ watershed_df <- mutate(watershed_df,
 
 # Change vegetation classes to factors
 watershed_df$vegetation<-as.factor(watershed_df$vegetation)
-```
 
- 
-```{r}
-# We can save the file (this will take some time)
-
+# We can save the file
 # write_csv(watershed_df, file = "datafiles/spatial_data/watershed_dataframe.csv")
 ```
-
 
 ## Calculate  area of watershed
 ```{r}

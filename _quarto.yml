@@ -5,7 +5,7 @@ project:
 book:
   title: "AB322 Land-2-Sea Tutorial"
   author: "Isabell Eischeid & Maeve McGovern"
-  date: "July 8, 2022"
+  date: "July 8, 2024"
   cover-image: cover.png
   chapters:
     - index.qmd
