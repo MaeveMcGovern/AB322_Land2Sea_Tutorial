@@ -38,7 +38,6 @@ plot(st_geometry(watershed))
 
  
 ```{r}
-
 # We can use Tmap for more elaborate maps
 # We can switch between plot mode and view mode
 # tmap_mode(mode = c("plot", "view"))
@@ -73,11 +72,61 @@ crs(stations, describe= "TRUE")
 stations_projected = st_transform(stations, "EPSG:32633")
 
 # Subset for one of the watersheds
-
 watershed = subset(watershed, name == "Adventelva")
 station = subset(stations_projected, Station == "Adventelva")
 ```
 
+### Calculate the slope
+
+```{r}
+# Crop the DEM to the extent of the watersheds to speed up processing
+dem <- crop(dem, vect(watershed))
+dem <- mask(dem, vect(watershed))
+
+plot(dem)
+
+# Calculate slope from the DEM
+slope <- terrain(dem, v = "slope", neighbors = 8, unit = "degrees")
+
+plot(slope)
+```
+
+### NDVI
+
+```{r}
+# Crop the NDVI to the extent of the watersheds to speed up processing
+ndvi <- crop(ndvi, vect(watershed))
+ndvi <- mask(ndvi, vect(watershed))
+
+# NDVI
+ndvi
+
+# Change the range to be between -1 and 1
+ndvi <- ndvi/1000
+
+plot(ndvi)
+```
+
+### Vegetation map
+
+```{r}
+# We can plot the map to look at it
+plot(veg_map)
+
+# Crop the veg map to the extent of the watersheds to speed up processing
+veg_map <- crop(veg_map, vect(watershed))
+veg_map <- mask(veg_map, vect(watershed))
+
+# Reclassify the vegetation map to a smaller number of categories
+# Reclassification matrix
+rclmat<-read.table("datafiles/spatial_data/rclmat.txt",header=TRUE,row.names=1)
+
+# Reclassify the map to simples classes with help of the matrix
+veg_rcl <- classify(veg_map, rclmat, include.lowest=TRUE)
+
+# Now we can look at the results
+plot(veg_rcl)
+```
 
 ## Generating new data layers from existing data
 ### Calculate the distance to each sampling station
@@ -101,58 +150,6 @@ plot(distance)
 plot(st_geometry(watershed), add=TRUE)
 ```
 
-### Calculate the slope
-
-```{r}
-# Crop the DEM to the extent of the watersheds to speed up processing
-dem <- crop(dem, vect(watershed))
-dem <- mask(dem, vect(watershed))
-
-plot(dem)
-
-# Calculate slope from the DEM
-slope <- terrain(dem, v = "slope", neighbors = 8, unit = "degrees")
-
-plot(slope)
-```
-
-
-### NDVI
-
-```{r}
-# Crop the NDVI to the extent of the watersheds to speed up processing
-ndvi <- crop(ndvi, vect(watershed))
-ndvi <- mask(ndvi, vect(watershed))
-
-# NDVI
-ndvi
-
-# Change the range to be between -1 and 1
-ndvi <- ndvi/1000
-
-plot(ndvi)
-```
-
-
-### Reclassify the vegetation map
-
-```{r}
-# We can plot the map to look at it
-plot(veg_map)
-
-# Crop the veg map to the extent of the watersheds to speed up processing
-veg_map <- crop(veg_map, vect(watershed))
-veg_map <- mask(veg_map, vect(watershed))
-
-# Reclassification matrix
-rclmat<-read.table("datafiles/spatial_data/rclmat.txt",header=TRUE,row.names=1)
-
-# Reclassify the map to simples classes with help of the matrix
-veg_rcl <- classify(veg_map, rclmat, include.lowest=TRUE)
-
-# Now we can look at the results
-plot(veg_rcl)
-```
 
 ## Overlaying the data to export
 ### Preparing the overlay
@@ -167,7 +164,6 @@ distance_prj <- project(distance, veg_rcl)
 ### Exploring the raster data
 
 ```{r}
-
 # Explore the raster layers
 tmap_mode(mode = c("view"))
 cls<-c("blue", "lightblue", "white")

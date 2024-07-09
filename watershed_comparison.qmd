@@ -134,9 +134,8 @@ catchment_chemistry2 <- catchment_chemistry %>%
   dplyr::select(-c(watershed, date, sample_id, year, month, day, `NA`)) 
 
 catchment_chemistry3 <- cor(catchment_chemistry2, method = c("spearman"))
-corrplot(catchment_chemistry3)
 
-corrplot(catchment_chemistry3, method = 'square', order = 'FPC', type = 'lower', diag = FALSE)
+corrplot(catchment_chemistry3)
 ```
 
 ### Scatter plots

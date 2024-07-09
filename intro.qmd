@@ -13,7 +13,7 @@ library(tidyverse)
 # Leaflet map of stations with mean annual DOC concentrations
 
 Stations <-read_csv("datafiles/AB322_Water_Chemistry3.csv") %>% select(c(River, Latitude, Longitude)) %>% distinct() %>% drop_na()
-pal <- colorFactor(c("lightblue4", "lightpink3", "plum4", "steelblue", "darkolivegreen4"), domain = c("Adventelva", "Sassenelva", "DeGeerelva", "Gipsdalselva", "Ebbaelva"))
+pal <- colorFactor(c("lightblue4", "lightpink3", "plum4", "steelblue", "darkolivegreen4"), domain = c("Adventelva", "Sassenelva", "Degeerelva", "Gipsdalselva", "Ebbaelva"))
 
 m <- leaflet(Stations) %>% 
   addProviderTiles('Esri.WorldImagery') %>% 
